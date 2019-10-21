@@ -1,0 +1,72 @@
+@import "../../../css_app/variables.scss";
+
+/* admin orders / menu and incoming */
+
+.admin_main_orders {
+    height: 100%; overflow-y: scroll;
+
+    h1 { font-size: 2em; }
+
+    > section { height: 100%; }
+
+    section#orders_left {
+            width: 40%; float: left; height: 100%;
+    }
+
+    section#orders_menu {
+            width: 60%; float: right; height: 100%; padding: 0 15px; height: 100%;
+            display: flex; flex-direction: column;
+
+            .topLevel_menu_head {
+                display: flex; flex-direction: row; justify-content: center; align-items: center;
+                h1   {  width: 100%;  }
+                span {  float: right; white-space: nowrap; }
+            }
+
+            #bottomLevel_menu {
+              height: 100%;
+            }
+
+            /* new orders menu item moda */
+
+            .order_section_each.new_order_section {
+                margin: 20px 0; color: white; display: flex; border: $primary_blue_border;
+                input  { width: 100%; padding-left: 10px; background: white; font-size: 0.78em; }
+                button { float: right;  background: $primary_blue; color: white; height: 100%; padding: 10px 20px;
+                         font-weight: 600; font-size: 0.75em;
+                }
+            }
+
+            .order_section_each {
+
+               .order_menu_each_accord {
+                  display: flex; width: 100%; align-items: center; border-bottom: $primary_blue_border; padding: 10px 0;
+
+                  h3 { padding: 10px 0;  width: 100%; }
+                  ul { float: right; white-space: nowrap; }
+
+                  ul > li { white-space: nowrap; display: inline-block; cursor: pointer; background: white; box-shadow: $primary_shadow;
+                            padding: 6px 10px; border-radius: 3px; margin: 0 10px; margin-right: 0; font-size: 0.6em;
+                  }
+               }
+               ul.order_menu_each_list { display: none; }
+
+               ul.order_menu_each_list > li {
+
+                  padding: 12px 5px; background: white; margin-bottom: 7px;
+                  overflow: auto; display: flex; align-items: center;
+
+
+                  span { width: 100%; height: 100%; font-size: 0.74em; float: left; padding-top: 2px; }
+
+                  div.order_each_price { margin: 0 20px; font-size: 0.74em; padding-top: 2px; float: left; }
+
+                  ul.order_each_quantity_counter  {
+                        height: 100%; float: right; white-space: nowrap;
+
+                        div.quantity_counter_buttons > li { margin: 10px 10px 0 0;  padding: 12px 10px; }
+                  }
+               }
+        }
+    }
+}

@@ -1,0 +1,7 @@
+
+web/node_modules/
+web/.env
+client/.env
+client/node_modules/
+
+store/node_modules/

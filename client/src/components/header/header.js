@@ -1,0 +1,108 @@
+import React, { Fragment , useEffect , useState } from 'react';
+import { useStoreState , useStoreActions } from 'easy-peasy';
+import axios from 'axios';
+
+import Dropdown from '../snippets/dropdown';
+import './headStyles.scss';
+
+const Notification = ( ) => {
+     const [ notification , altertNotification ] = useState( [ false , { } ] );
+     useEffect(() => {
+        setTimeout( () => {
+              altertNotification( [ true , { header : 'order' , msg : 'new order' } ]);
+              var audio = new Audio('./notification_Sound.mp3');
+                      window.focus();
+                      var playPromise = audio.play();
+                      if (playPromise !== undefined) {
+                      playPromise.catch( err => console.log( 'sound error') );
+                  }
+        }, 2000 );
+       // eslint-disable-next-line
+     }, [ ]);
+
+    const dropdownNotification = ( ) => {
+          return (
+            <Fragment>
+                <div className="dropdown-content">
+                      <ul id="navigation">
+                          <li> current </li>
+                      </ul>
+                </div>
+            </Fragment>
+          )
+    }
+
+    return (
+      <div className="dropdown notification_new">
+          { notification[0] && <div className="msg_not_alert"> <p> { notification[1].msg } </p> </div> }
+          <Dropdown class={ notification[0] ? "nav_menu active_notification_bell" : "nav_menu" }
+                    link={ <i className="far fa-bell" > </i> }
+                 element={ dropdownNotification() }
+          />
+      </div>
+    )
+}
+
+const Header = ( props ) => {
+    const user = props.user;
+
+     useEffect(() => {
+       console.log( 'loading header ');
+       // eslint-disable-next-line
+     }, []);
+
+    const dropdownNavLink = ( props ) => { return (
+       <Fragment>
+           <h1 className="head_user_name">     { user.username } </h1>
+           <div className="head_user_profile"> <h3> A </h3>     </div>
+       </Fragment>
+    )}
+
+    const dropdownNavUl = ( props ) => {
+      return (
+          <Fragment>
+            <div className="dropdown-content">
+                <ul> <li> log out </li>  </ul>
+            </div>
+          </Fragment>
+       )
+    }
+
+   const dropdownMenuUl = ( ) => {
+
+      const changePage = useStoreActions( actions => actions.updateComponent );
+
+      return (
+          <Fragment>
+              <div className="dropdown-content">
+                    <ul id="navigation">
+                        <li onClick={ e => changePage( 0 ) }> menu  </li>
+                        <li onClick={ e => changePage( 1 ) }> cms   </li>
+                        <li onClick={ e => changePage( 2 ) }> tickets </li>
+                    </ul>
+              </div>
+          </Fragment>
+       )
+    }
+
+    return (
+      <div className="header">
+        <div id="header_top"> </div>
+        <div id="header_adjust">
+              <div id="head_appname">
+                  <svg id="do_nav-logomark" x="0px" y="0px" viewBox="65.2 173.5 180 180" fill="currentColor">
+                  <path d="M155.2,351.7v-34.2c36.2,0,64.3-35.9,50.4-74c-5.1-14.1-16.4-25.4-30.5-30.5c-38.1-13.8-74,14.2-74,50.4l0,0H67c0-57.7,55.8-102.7,116.3-83.8c26.4,8.3,47.5,29.3,55.7,55.7C257.9,295.9,213,351.7,155.2,351.7z"></path> <polygon points="155.3,317.6 121.3,317.6 121.3,283.6 121.3,283.6 155.3,283.6 155.3,283.6"></polygon> <polygon points="121.3,343.8 95.1,343.8 95.1,343.8 95.1,317.6 121.3,317.6"></polygon> <path d="M95.1,317.6H73.2l0,0v-21.9l0,0h21.9l0,0V317.6z"></path></svg>
+                  <h3> the ashcott <span> ( admin ) </span> </h3>
+              </div>
+
+              <div id="head_social">
+                    <Notification />
+                    <Dropdown class="nav_menu"      link={ <h1> nav <i className="fas fa-sort-down"> </i> </h1> } element={ dropdownMenuUl()  } />
+                    <Dropdown class="nav_head_menu" link={ dropdownNavLink()  } element={ dropdownNavUl()   } />
+              </div>
+        </div>
+      </div>
+    );
+}
+
+export default Header;

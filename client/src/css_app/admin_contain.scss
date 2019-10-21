@@ -1,0 +1,97 @@
+@import "./variables.scss";
+
+
+/* admin container */
+
+.admin_container {
+       width: 100%;
+       display: flex;
+       flex-direction: column;
+       background: $primary_background;
+
+       .admin_main_content {
+            width: 100%; height: 100%; padding: 0; display: flex; margin: 0 auto;
+
+            /* left content */
+            section.a_main_content_center {
+                width: 100%; height: 100%; padding: 20px 0; padding-left: $padding_adjust;
+            }
+            /* right content */
+            section.app_sidebar_notifications {
+                width: 30%; height: 100%; background: white; padding: 10px 20px; 
+            }
+       }
+}
+
+/* custom styles */
+.component_load_contain {
+  position: relative;
+  .component_load { width: 50px; height: 50px; padding: 10px; position: absolute; margin: auto; top: 0; left: 0; right: 0; bottom: 0;
+      > svg { color: $primary_blue; }
+  }
+}
+
+li.custom_profile {
+      width: 100%; padding: 10px 0 0 7px;
+      .order_user_profile {
+          display: flex;
+          .avatar {
+              background: $primary_light_blue; border-radius: 50%; padding: 5px 10px; height: 52px;
+              > img {  height: 34px; margin-top: 2px; }
+          }
+          .order_name_time {
+              width: 100%; padding: 0 10px;
+              h3      { margin: 5px 0 0 5px; }
+              ul > li { display: inline-block; padding: 4px 7px; margin: 3px 3px; width: auto; font-size: 0.76em;
+                        background: #486dff; color: white; border-radius: 4px; font-weight: 600;
+              }
+
+          }
+      }
+      .order_user_info {
+            > p { padding: 7px 0; font-size: 0.73em; font-weight: 600; line-height: 1.6; color: #9da0cf; font-style: oblique; }
+      }
+  }
+
+.list_buttons {
+      > li {
+         display: inline-block; padding: 6px 9px; cursor: pointer; text-align: center; margin-right: 10px;
+         box-shadow: $primary_shadow; font-size: 0.65em; border-radius: 4px;
+      }
+}
+
+.item_button_blue { padding: 3px 10px; border: 1px solid $primary_blue; color: $primary_blue;
+                    font-size: 0.8em; border-radius: 4px; cursor: pointer;
+                    background: white;
+}
+
+.modal.modal_order_menu_item_add {
+    width: 400px; padding: 30px 15px;  position: relative; height: auto; background: white;
+    h3    { width: 100%; padding: 10px 0; border-bottom: 1px solid #d8d8d8; }
+    input { width: 100%; padding: 10px 5px; background: #eaeaea; border: $primary_border_grey;  }
+    h4    { margin: 10px 0; }
+
+    div   {
+        width: 100%; padding: 10px 0;
+        button { float: right; margin-left: 5px; padding: 10px 20px; }
+        button.confirm { background: $primary_blue; color: white; }
+        button.cancel  { background: #d8d8d8; }
+    }
+}
+
+.content_section_head {
+      width: 100%; height: auto;
+     > h1 { font-size: 1.5em; }
+}
+
+.content_section_info {
+     font-size: 0.8em; font-weight: 400; padding: 10px 0;
+}
+
+.content_section_fit {
+    display: flex; flex-direction: row; justify-content: center; align-items: center;
+    .fit_left  {  width: 100%;  }
+    .fit_right {  float: right; white-space: nowrap; font-weight: 400; }
+}
+
+//

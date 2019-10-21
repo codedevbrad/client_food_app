@@ -1,0 +1,93 @@
+@import "./variables.scss";
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,600,700');
+
+* { -webkit-font-smoothing: antialiased; }
+
+h1, h2, h3, h4, a, li, p, input, label, textarea, button {
+  font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.87em; letter-spacing: 0em;
+}
+
+* {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+     box-sizing: border-box;
+}
+
+input , button { font-weight: 400; }
+
+/* -- html content -- */
+
+html, body { padding: 0; margin: 0;  width: 100%; background: white; }
+
+html    { height: 100%; }
+body    { min-height: 100%; height: 100%;  max-height: 100%; overflow: hidden; }
+
+a       { text-decoration: none; cursor: pointer; }
+a:hover { text-decoration: none; }
+svg     { pointer-events:  none; }
+
+.App , #root , .main { background: white; width: 100%; height: 100%; color: black; }
+
+.main { display: flex; }
+
+.active { background: $primary_light_blue; }
+
+.hidden { opacity: 0; }
+
+.span_blue {
+    font-style: oblique;
+    padding: 5px 0px;
+    position: relative;
+    bottom: 5px;
+    border-radius: 3px;
+    color: blue;
+}
+
+.hero_img_circle  { width: 39px; height: 38px;  padding: 2px;  }
+
+.hero_img         { vertical-align: middle; width: 100%; height: 100%; border-radius: 5px;  }
+
+
+.auth_error_msg   { width: 70%; margin: 0 auto; background: #ffbcbc; border: 1px solid #fb8b8b;
+        > h3 { font-size: 0.7em; padding: 8px 15px; }
+}
+
+.error   { position: fixed; top: 30px; right: 50px; background: #123de6; z-index: 9999;
+           color: white; padding: 10px 25px; border-radius: 3px; font-weight: 400; width: 285px;
+
+           .error_message { font-size: 0.6em; font-weight: 400; padding: 10px 0; }
+         }
+.cancel  { padding: 10px 20px; background: #d8d8d8; }
+.confirm { background: $primary_blue; color: white; }
+.delete  { background: #ff3b3b; color: white;  }
+
+.dropdown_ui {
+    font-size: 0.85em;
+    margin: 0 10px;
+    padding: 8px 15px;
+    border-radius: 6px;
+    box-shadow: 3px 2px 8px #d8d8d8;
+
+    svg { position: relative; left: 3px; }
+}
+
+.dropdown_ui.dropdown_icon_fix {
+    svg { bottom: 1.5px; }
+}
+
+/* form */
+
+input , button { outline: none; background: none; border: none; }
+
+.submit_form   { width: 100%; padding: 13px 20px; background: $primary_blue; }
+
+
+::-webkit-scrollbar       { width: 30px; }
+
+::-webkit-scrollbar-track { background: $primary_background; }
+
+::-webkit-scrollbar-thumb { background: red; border: 10px solid $primary_background; cursor: pointer; }
+
+
+
+//

@@ -1,0 +1,36 @@
+
+
+.modal_all {
+
+
+   width: 100%; height: 100%; position: fixed; left: 0; top: 0; z-index: 8000;
+
+   .modal_overlay { width: 100%; height: 100%; opacity: 0.7; background: #6087d4; position: fixed; left: 0; top: 0; }
+
+   .modal_contain {
+      width: 100%; height: 100%; display: flex; align-items: center;
+      justify-content: center; opacity: 1;
+
+      .modal { background: white; opacity: 1; z-index: 9999; border-radius: 9px; }
+   }
+}
+
+.dropdown {
+    position: relative; display: inline-block; cursor: pointer;
+
+    p { color: white; font-weight: 400; }
+
+    .dropdown-content {
+      border-radius: 7px; display: block; position: absolute; top: 40px; right: 0;
+      background-color: #f9f9f9; min-width: 160px; box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+      padding: 12px 16px; z-index: 9999; color: black;
+    }
+
+    .dropdown-content > ul { cursor: initial; }
+
+    .dropdown-content > ul > li {
+      margin: 9px 0;  padding: 10px 10px; border-radius: 6px; font-size: 0.7em; font-weight: 600; cursor: pointer;
+    }
+    .dropdown-content > ul > li:hover { background: #1673e614;  }
+
+}

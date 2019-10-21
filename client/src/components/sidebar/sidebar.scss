@@ -1,0 +1,80 @@
+@import "../../css_app/variables.scss";
+
+/* sidebar all */
+
+.orders_incoming_sidebar::-webkit-scrollbar , .reservation_incoming_sidebar::-webkit-scrollbar {
+  width: 10px;
+}
+
+.orders_incoming_sidebar::-webkit-scrollbar-track , .reservation_incoming_sidebar::-webkit-scrollbar-track { background: white }
+.orders_incoming_sidebar::-webkit-scrollbar-thumb , .reservation_incoming_sidebar::-webkit-scrollbar-thumb {
+    background: #eae8e8; border: 0px; cursor: pointer;
+}
+
+.app_sidebar_notifications {
+        .incoming_dropdowns {
+            padding: 15px 0;
+            > div > div { margin-left: 0; }
+        }
+
+        #sidebar_navigation {
+            display: flex; flex-direction: row;  width: 100%;
+
+           .sidebar_toggle_btn {
+                display: flex; align-items: center; justify-content: center;
+                margin-right: 15px; background: $primary_darkblue; border-radius: 4px;
+                p { padding: 5px 11px; color: white; }
+           }
+           .sidebar_nav_ul     {
+                display: flex;  width: 100%;
+                box-shadow: 4px 3px 0px 0px #000000; border: 1px solid black;
+                margin: 0 auto; border-right: 1px solid black;
+               > li         { text-align: center; flex: 0 0 50%; padding: 7px 10px; font-size: 0.7em; font-weight: 600;
+                              cursor: pointer; border-right: 1px solid black;
+                            }
+            }
+        }
+        .incoming_empty {
+             width: 100%; background: $primary_light_blue; text-align: center; padding: 15px 10px;
+             font-size: 0.68em;
+        }
+}
+
+/* sidebar orders / reservations */
+
+.orders_incoming_sidebar , .reservation_incoming_sidebar {
+       margin-top: 10px; overflow-y: scroll; height: 100%;
+      > ul { width: 100%; display: block; margin: 0 auto;  }
+}
+
+
+/* sidebar statistics & fullpage */
+
+.sidebar_statistics {
+    padding: 10px 0; margin-top: 10px;
+    section {
+        max-width: 100%; width: 100%; position: relative; margin: 10px 0; text-align: center;
+        border: 1px solid black; box-shadow: 4px 3px 0px 0px #000000; height: auto; padding: 15px 10px;
+        h3  {  font-size: 0.7em; }
+        span { font-size: 0.8em; }
+    }
+
+    div.statistics_more_btn {
+        background: $primary_darkblue; margin: 15px 0; font-size: 0.65em; text-align: center;
+        padding: 13px 12px; border-radius: 4px; color: white;
+        box-shadow: 5px 5px 0px #a4ccff; cursor: pointer;
+    }
+}
+
+.statistics_fullPage {
+    height: 100%; background: white; overflow-y: scroll; padding: 20px;
+    section { }
+    #stat_profits { float: right; width: 40%; height: 200px; }
+    #stat_graph   { float: left; width: 60%; overflow: hidden; padding: 10px; background: #d3e7ff3d;
+        > canvas  { width: 100% !important; }
+    }
+
+
+
+
+}
