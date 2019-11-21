@@ -8,7 +8,15 @@ $primary_blue: #3e65ff;
 $primary_red:  #ffa1a1;
 $primary_light_blue: #1673e614;
 $primary_darkblue: #123de6;
+$primary_grey: #d8d8d8;
 
 $primary_shadow: 1px 1px 9px #a1bfff;
 $width_adjust: 85%;
 $padding_adjust: 8%;
+
+@mixin blue_button {
+  margin-right: 5px; cursor: pointer;
+  background: $primary_darkblue;
+  padding: 6px 12px;
+  border-radius: 4px; color: white;
+}

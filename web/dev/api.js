@@ -1,4 +1,5 @@
 
+const { profiles } = require('../config/profiles');
 // spa routes ( food admin )
 const bcrypt   = require('bcryptjs');
 const express  = require('express');
@@ -8,6 +9,13 @@ const api      = express.Router();
 
 const pusher = require('../config/settings.js').pusher();
 const stripe = require('stripe') ( process.env.stripe_secretKey );
+const cloudinary = require('cloudinary');
+
+cloudinary.config({
+    cloud_name:  process.env.cloud_name,
+    api_key:     process.env.cloud_key ,
+    api_secret:  process.env.cloud_secret
+});
 
 // models
 const Staff    = require('./models/staff');
@@ -127,6 +135,7 @@ api.post('/customer/collect' , async( req , res , next ) => {
         .catch( next );
 
     pusher.trigger('orders', 'new', { "msg": "new order" , "order": savedOrder });
+    pusher.trigger('notification' , 'new' , { "msg": 'new order' });
     res.status( 200 ).send( savedOrder );
 
     // const body = { amount: 400 , currency: 'gbp', description: "Lauren B." , source: "fhtj655lwd", };
@@ -151,11 +160,10 @@ api.route('/customer/reserve')
                 var tables = array.filter( ( eachTable ) => {
                     return eachTable.tableTime.getDay()  === currDate.getDay() &&
                            eachTable.tableTime.getDate() === currDate.getDate();
-                })
-                .map( ( { _id , bookedName , notes , tableNumber , tableTime }) => {
+                }).map( ( { _id , bookedName , notes , tableNumber , tableTime }) => {
                     return { bookedName , _id  , notes , tableNumber , tableTime : time( tableTime )}
                 });
-                  res.status( 200 ).send( tables );
+                res.status( 200 ).send( tables );
               })
               .catch( next );
     })
@@ -179,23 +187,36 @@ api.route('/customer/reserve')
 
         // false pusher update.
         pusher.trigger('reservations', 'new', { "message": "new reservation" , "obj": newTable });
+        pusher.trigger('notification' , 'new' , { "msg": 'new reservation' });
         res.status( 200 ).send( newTable );
     });
 
+api.post('/order/menu/arrange' , async( req , res , next ) => {
+    const menuPositions = req.body.menu;
+          menuPositions.forEach( async ( each ) => {
+              await Menus.findOneAndUpdate( { _id: each.sectionId } , { posIndex : each.posIndex } , { new : true })
+                  .catch( next )
+          });
+          res.status( 200 ).send( 'success' );
+});
 
 api.route('/order/menu/')
     .get( ( req , res , next ) => {
           Menus.find()
+               .sort({ posIndex: + 1 })
                .then( menus => res.status( 200 ).send( menus ))
                .catch( next );
     })
     .post( ( req , res , next ) => {
-           const { section } = req.body;
-           if ( !section || !req.body ) { throw new Error('error with request') };
+           const { section , posIndex } = req.body;
+           console.log( posIndex );
+           if ( section === undefined || posIndex === undefined ) { throw new Error('error with request') };
 
+           // res.status(200).send('success');
            const newMenu = new Menus({
                  sectionName   : section ,
-                 sectionItems  : [ ]
+                 sectionItems  : [ ] ,
+                 posIndex      : posIndex
            });
            newMenu.save( )
                   .then( menu => res.status( 200 ).send( menu ) )
@@ -219,18 +240,32 @@ api.route('/order/menu/alter')
 
 api.route('/order/menu/item')
     .post( ( req , res , next ) => {
-
          const id = req.query.id;
-         const { product , price } = req.body;
-         const newItem = { product , price , inStock : true , menuShow : true };
-
-         // add a new id value to the item for tracing
-
+         const { product , price , imgUrl } = req.body;
+         const newItem = { product , price , inStock : true , menuShow : true , imgUrl };
+         // add a new id value to the item for tracing...
          Menus.findOneAndUpdate( { _id : id } , { $push: { sectionItems : newItem } } , { new : true } )
               .then( menu => res.status( 200 ).send( newItem ))
               .catch( next );
     });
 
+api.route('/order/menu/item/alter')
+    .post( ( req , res , next ) => {
+
+        const { sectionId , itemId } = req.query;
+        const obj = { product , price , inStock , menuShow , imgUrl } = req.body;
+
+        Menus.findOneAndUpdate( { "sectionItems._id" : itemId } , { "$set" : { "sectionItems.$" : obj }} , { new : true } )
+              .then( array => res.status( 200 ).send( array ))
+              .catch( next );
+    })
+    .delete( ( req , res , next ) => {
+
+        const { sectionId , itemId } = req.query;
+        Menus.findOneAndUpdate( { "sectionItems._id" : itemId } , { "$pull" : { sectionItems : { _id : itemId } }} , { new : true } )
+              .then( array => res.status( 200 ).send( array ))
+              .catch( next );
+    });
 
 api.route('/app/details')
    .get( ( req , res , next ) => {
@@ -255,32 +290,59 @@ api.route('/app/details/edit')
     .delete( ( req , res , next ) => {
         const id = req.query.id;
         Detail.findOneAndRemove( { _id : id })
-             .then(  id => res.status( 200 ).send( id ))
+             .then(    id => res.status( 200 ).send( id ))
              .catch( next );
     });
 
-
 api.route('/app/cms')
    .get( ( req , res , next ) => {
-        res.send( 'hi' );
+        // what to search and what filter to add.
+        const { belongsTo } = req.query;
+        Cms.find( { belongsTo } )
+           .then( array => res.status(200).send(array ))
+           .catch( next );
    })
-   .post( ( req , res , next ) => {
-        // image
+   .delete( ( req , res , next ) => {
+        const { id } = req.query;
+        Cms.findOneAndRemove( { _id : id })
+          .then( arr => res.status( 200 ).send( arr ))
+          .catch( next );
+   });
 
-        // text
-   })
+api.post('/app/cms/json' , ( req , res , next ) => {
+      const { belongsTo } = req.query;
+      const { content } = req.body;
+      // infodetail = content
+      // belongsTo  = about /
+      // attachment = 'no needed value'.
+});
 
-api.route('/app/cms/pdf')
+api.post('/app/cms/file' , async ( req , res , next ) => {
+       const { belongsTo } = req.query;
+           // infodetail = description
+           // belongsTo  = menu , photo
+           // attachment = pdf or image string
+       const values = Object.values( req.files ) ,
+             upload = values.map( image => cloudinary.uploader.upload( image.path ));
+
+      let uploadRes = await Promise.all( upload )
+                                   .catch( next );
+       const cmsObj = new Cms( { infoDetail : 'placehold_change' , belongsTo , attachment : uploadRes[0].url } );
+             cmsObj.save()
+                .then( fileObj => res.status( 200 ).send( fileObj ))
+                .catch( next );
+});
+
+// saves to cloudinary and only returns obj. no save to db.
+api.route('/app/file_upload')
     .post( ( req , res , next ) => {
-
-    })
-    .get( ( req , res , next )  => {
-          fs.readFile( "./dev/example.pdf" , ( err , data ) => {
-             res.contentType("application/pdf");
-             res.send(data);
-          });
+        const { sectionId , itemId } = req.query;
+        const values = Object.values( req.files );
+        const upload = values.map( image => cloudinary.uploader.upload( image.path ));
+        Promise.all( upload )
+               .then( image => { res.status( 200 ).send( image[0].url )})
+               .catch( next );
     });
 
-module.exports = api;
 
-//
+module.exports = api;

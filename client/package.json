@@ -8,15 +8,18 @@
     "easy-peasy": "^2.4.0",
     "node-sass": "^4.11.0",
     "pusher-js": "^5.0.2",
-    "react": "^16.8.4",
-    "react-dom": "^16.8.4",
-    "react-scripts": "2.1.8"
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0",
+    "react-scripts": "2.1.8",
+    "react-sortable-hoc": "^1.10.1"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "jestTest": "jest App",
+    "testMe": "jest"
   },
   "proxy": "http://localhost:5000",
   "eslintConfig": {
@@ -27,5 +30,6 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {}
 }

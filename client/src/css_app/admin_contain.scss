@@ -18,7 +18,7 @@
             }
             /* right content */
             section.app_sidebar_notifications {
-                width: 30%; height: 100%; background: white; padding: 10px 20px; 
+                width: 30%; height: 100%; background: white; padding: 10px 20px;
             }
        }
 }
@@ -82,7 +82,15 @@ li.custom_profile {
 .content_section_head {
       width: 100%; height: auto;
      > h1 { font-size: 1.5em; }
+     > h1.title-m  { font-size: 1.2em;  }
+     > h1.title-s  { font-size: 0.9em;  }
+     > h1.title-xs { font-size: 0.75em; }
 }
+
+.content_section_info.p-s { font-size: 0.65em; }
+.content_section_info.p-m { font-size: 0.70em; }
+.content_section_info.p-l { font-size: 0.75em; }
+
 
 .content_section_info {
      font-size: 0.8em; font-weight: 400; padding: 10px 0;

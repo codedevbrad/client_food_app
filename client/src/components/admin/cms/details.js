@@ -4,10 +4,12 @@ import { useStore , useActions } from 'easy-peasy';
 import axios from 'axios';
 
 import Modal from '../../snippets/modal';
+import { Loading , saveAnimation } from '../../snippets/loading';
+
 import './styles.scss';
 
-import { details } from './detail_handlers';
-const  { getDetails , postDetails , updateDetails , deleteDetails } = details;
+import { cmsHandle  , detailsHandle } from './detail_handlers';
+const  { getDetails , postDetails , updateDetails , deleteDetails } = detailsHandle;
 
 const ContactDetails = ( ) => {
 
@@ -120,35 +122,69 @@ const OpeningTimes = ( ) => {
             </div>
 
             { openings.map( ( opening , index ) =>
-              <Modal link={
-                <div className="opening_each" key={ index }>
-                    <h3> { opening.infoDetail } </h3>
-                </div>
-              } id="modal_order_menu_item_add">
-
-                  <h3> edit the existing opening time </h3>
-
-                  <input type="text" name="product" placeholder={ opening.infoDetail }
-                                     value={ openingNew }
-                                     onChange={ e => alteropening( e.target.value )}
-                                     />
-                  <div>
-                      <button className="confirm" onClick={ e => alterExistingOpening( opening._id ,  openingNew )}>
-                            complete edit
-                      </button>
-                      <button className="delete"  onClick={ e => deleteExistingOpening( opening._id )}>
-                           <i className="far fa-trash-alt"> </i>
-                      </button>
+                <Modal key={ index } link={
+                  <div className="opening_each" key={ index }>
+                      <h3> { opening.infoDetail } </h3>
                   </div>
+                } id="modal_order_menu_item_add">
 
-              </Modal>
+                    <h3> edit the existing opening time </h3>
+
+                    <input type="text" name="product" placeholder={ opening.infoDetail }
+                                       value={ openingNew }
+                                       onChange={ e => alteropening( e.target.value )}
+                                       />
+                    <div>
+                        <button className="confirm" onClick={ e => alterExistingOpening( opening._id ,  openingNew )}>
+                              complete edit
+                        </button>
+                        <button className="delete"  onClick={ e => deleteExistingOpening( opening._id )}>
+                             <i className="far fa-trash-alt"> </i>
+                        </button>
+                    </div>
+
+                </Modal>
             )}
 
         </section>
     )
 }
 
+const { getCmsContent , cloudinaryUpload } = cmsHandle;
+
 const CmsDefault = () => {
+
+    const [ cmsMenus , populateMenus ] = useState( [] );
+    // form Load state = orderSection / true = starting , false = finished. [0] = show or hide [1] change text
+    const [ pdfWillsave , pdfsaveWillChange ] = useState( [ false , false ] );
+
+    useEffect( () => {
+          getCmsContent('menu')
+              .then(  arr => populateMenus( arr ))
+              .catch( err => console.log( err ));
+    }, []);
+
+    const fileSelectedHandler = ( e , belongsTo ) => {
+        const file = e.target.files[0];
+
+        pdfsaveWillChange( [true , false ] );
+        cloudinaryUpload( file , belongsTo )
+            .then(  obj => {
+              saveAnimation( pdfsaveWillChange , [ true , true ] ,  [ false , true ] , ( ) => {
+                      populateMenus( [ ...cmsMenus , obj ] );
+              });
+            })
+            .catch( err => console.log( err ));
+    }
+
+    const viewPdf = ( menu ) => {  // window.open( menu.attachment );
+    }
+
+    const editCmsObject = ( editType , obj ) => {
+        if ( editType === 'edit' ) { }
+        if ( editType === 'delete' ) {
+        }
+    }
 
     return (
         <div className="admin_main_cms">
@@ -175,8 +211,44 @@ const CmsDefault = () => {
                   </div>
 
                   <div id="cms_choices">
-                        <div className="cms_each_field">
-                              <h3> menus </h3>
+                        <div className="cms_each_field cms_menu_area">
+
+                              <div className="progress_upload">
+                                  { pdfWillsave[0] && <Loading textState={ pdfWillsave[1] }/> }
+                              </div>
+
+                              <div className="content_section_fit">
+                                  <h3 className="fit_left"> menus for restaurant tables </h3>
+                                  <ul className="fit_right">
+                                      <li className="menu_upload_btn">
+                                          <input type="file" id="png_upload" onChange={ e => fileSelectedHandler( e , 'menu' ) }/>
+                                          <label htmlFor="png_upload"> <i className="fas fa-plus"> </i> </label>
+                                      </li>
+                                  </ul>
+                              </div>
+                              <div className="cms_populate_menus">
+                                <ul>
+                                    { cmsMenus.map( ( menu , index ) => (
+                                       <li className="menu_pdf_individual" onClick={ e => viewPdf( menu ) }>
+                                          <i className="far fa-file-alt menu_pdf_icon" > </i>
+                                          <Modal link={ <div className="menu_pdf_edit_contain"> <i className="fas fa-pen-alt"> </i> </div> } id="modal_order_menu_item_add">
+                                              <h3> edit the { menu.infoDetail } pdf </h3>
+
+                                              <input type="text" name="product" />
+                                              <div>
+                                                  <button className="confirm">
+                                                        complete edit
+                                                  </button>
+                                                  <button className="delete">
+                                                       <i className="far fa-trash-alt"> </i>
+                                                  </button>
+                                              </div>
+                                          </Modal >
+                                          <h3 className="menu_pdf_text"> { menu.infoDetail } </h3>
+                                       </li>
+                                    ))}
+                                </ul>
+                              </div>
                         </div>
 
                         <div className="cms_each_field">

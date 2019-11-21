@@ -1,8 +1,37 @@
 import axios from 'axios';
 
 const config = { headers: { 'Content-Type': 'application/json' } };
+const configFile = { headers: {'Content-Type': 'multipart/form-data' }};
 
-export const details = ( ( ) => ({
+export const cmsHandle = ( ( ) => ({
+
+      getCmsContent: ( type ) => {
+          return new Promise( ( resolve , reject ) => {
+              axios.get('/api/app/cms?belongsTo='+ type )
+                   .then(  res => res.data )
+                   .then ( arr => resolve( arr ))
+                   .catch( err => reject( err.response.data ));
+          });
+      },
+
+      postCmsContent: ( ) => { } ,
+
+      editCmsContent: ( ) => {
+
+      },
+
+      cloudinaryUpload: ( file , type ) => {
+          var formData = new FormData();
+              formData.append('file' , file );
+          return new Promise( ( resolve , reject ) => {
+                  axios({  method: 'post', url: '/api/app/cms/file?belongsTo='+type , data: formData , config: configFile })
+                     .then(  obj => resolve( obj.data ))
+                     .catch( err => reject( err.response.data ));
+          });
+      }
+}))();
+
+export const detailsHandle = ( ( ) => ({
 
       getDetails : ( detailType ) => {
           return new Promise( ( resolve , reject ) => {

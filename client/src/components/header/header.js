@@ -1,24 +1,40 @@
 import React, { Fragment , useEffect , useState } from 'react';
 import { useStoreState , useStoreActions } from 'easy-peasy';
-import axios from 'axios';
 
+import Pusher   from 'pusher-js';
 import Dropdown from '../snippets/dropdown';
 import './headStyles.scss';
 
 const Notification = ( ) => {
-     const [ notification , altertNotification ] = useState( [ false , { } ] );
-     useEffect(() => {
-        setTimeout( () => {
-              altertNotification( [ true , { header : 'order' , msg : 'new order' } ]);
-              var audio = new Audio('./notification_Sound.mp3');
-                      window.focus();
-                      var playPromise = audio.play();
-                      if (playPromise !== undefined) {
-                      playPromise.catch( err => console.log( 'sound error') );
-                  }
-        }, 2000 );
-       // eslint-disable-next-line
-     }, [ ]);
+     // 0  = notify show ' hide', 1 = notify state after x seconds , msg
+     const [ notification , alertNotification ] = useState( [ false , false , { } ]);
+     var audio = new Audio('./notification_Sound.mp3');
+
+     const pusherConnection = useStoreState( state => state.pusherNotifyState );
+     const updatePusherCon  = useStoreActions( actions => actions.updateNotifyState );
+
+     useEffect( () => {
+       updatePusherCon( true );
+       if ( !pusherConnection ) {
+             console.log('we only run notify once');
+             var pusher = new Pusher( process.env.REACT_APP_PUSHER_CLIENTID , { cluster: 'eu' , forceTLS: true });
+             var orders = pusher.subscribe('notification');
+
+             orders.bind('new' , ( data ) => {
+                    window.focus();
+                    console.log('notification incoming');
+                    alertNotification( [ true , true , { msg: data.msg } ]);
+                    var playPromise = audio.play();
+                    if (playPromise !== undefined) {
+                    playPromise.catch( err => console.log( 'sound error') );
+                    }
+                    setTimeout( () => {
+                        alertNotification([ true , false , {} ]);
+                    }, 10000 );
+             });
+       }
+        // eslint-disable-next-line
+     }, [  ]);
 
     const dropdownNotification = ( ) => {
           return (
@@ -34,7 +50,7 @@ const Notification = ( ) => {
 
     return (
       <div className="dropdown notification_new">
-          { notification[0] && <div className="msg_not_alert"> <p> { notification[1].msg } </p> </div> }
+          { notification[1] && <div className="msg_not_alert"> <p> { notification[2].msg } </p> </div> }
           <Dropdown class={ notification[0] ? "nav_menu active_notification_bell" : "nav_menu" }
                     link={ <i className="far fa-bell" > </i> }
                  element={ dropdownNotification() }

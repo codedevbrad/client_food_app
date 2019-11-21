@@ -8,12 +8,15 @@ const Modal = ( props ) => {
   const [isToggle , setToggle ] = useState(false);
 
   const toggleDropdown = ( e ) => {
-    isToggle ? setToggle(false) : setToggle(true);
+      isToggle ? setToggle(false) : setToggle(true);
+      if ( props.callback ) {
+          props.callback( 'completed' );
+      }
   }
 
   return (
     <Fragment>
-        <li onClick={ e => toggleDropdown(e) }> { props.link } </li>
+        <li className={ props.listClass } data-access={ props.access } onClick={ e => toggleDropdown(e) }> { props.link } </li>
         { isToggle &&
         <div className="modal_all">
             <div className="modal_overlay" onClick={ e => setToggle( false ) }>  </div>

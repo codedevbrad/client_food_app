@@ -4,8 +4,10 @@ const session  = require('express-session');
 const cors     = require('cors');
 const passport = require('passport');
 const Pusher   = require('pusher');
+const cloudary = require('cloudinary');
+const formData = require('express-form-data');
+const morgan   = require('morgan');
 
-// passport strategys
 require('./passport') ( passport );
 
 module.exports = {
@@ -16,6 +18,8 @@ module.exports = {
         // parse application/json
         app.use( express.json());
         app.use( cors());
+        app.use(formData.parse());
+        app.use( morgan('dev') );
     } ,
 
     authChecks: ( app ) => {
@@ -34,6 +38,13 @@ module.exports = {
             secret: process.env.pusherSecret ,
             cluster: 'eu',
             encrypted: true
+        });
+    } ,
+    cloudinary: ( ) => {
+        return cloudary.config({
+            cloud_name:  process.env.cloud_name,
+            api_key:     process.env.cloud_key ,
+            api_secret:  process.env.cloud_secret
         });
     }
 }

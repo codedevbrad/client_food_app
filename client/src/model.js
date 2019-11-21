@@ -3,6 +3,7 @@ import { action , thunk } from 'easy-peasy';
 import axios from 'axios';
 
 export default {
+
       order_menu: [] ,
 
       isUserAuth: false ,
@@ -14,6 +15,10 @@ export default {
       incomingTab: [ 0 , 'orders' ] ,
 
       // pusher checks ...
+
+      pusherNotifyState: false ,
+      updateNotifyState: action(( state , boolean) => { state.pusherNotifyState = boolean  }),
+
       pusher_OrderState: false ,
       updateOrderState:  action(( state , boolean ) => { state.pusher_OrderState = boolean; }),
 

@@ -42,6 +42,36 @@
                  background: white; padding: 10px 15px; margin-bottom: 10px;
                  h3 { font-size: 0.8em; }
               }
+
+              .cms_menu_area {
+                     div.progress_upload > div.progress_bar {
+                        margin-bottom: 15px; padding: 12px 0; font-size: 0.8em;
+                     }
+
+                  li.menu_upload_btn {
+                   cursor: pointer;
+                     #png_upload { display: none;   }
+                     label       { cursor: pointer; padding: 5px 10px; background: $primary_darkblue; border-radius: 3px; color: white;  }
+                  }
+
+                  .cms_populate_menus {
+                     margin: 10px 0;
+                     ul      {  }
+                     ul > li.menu_pdf_individual:hover { border: 1px dashed black; }
+                     ul > li.menu_pdf_individual {
+                        border: 1px  solid #fee; position: relative;
+                         padding: 7px; display: inline-block; margin: 5px 15px; margin-left: 0; cursor: pointer;
+                        border-radius: 4px; background: #fee; text-align: center;
+
+                        svg.menu_pdf_icon  { font-size: 2em; }
+                        h3.menu_pdf_text   { text-align: center; padding: 5px 0; }
+                        div.menu_pdf_edit_contain  {
+                            position: absolute; top: -5px; right: -5px; padding: 2px 5px; background: $primary_darkblue; border-radius: 4px;
+                            svg { color: white; font-size: 0.7em; }
+                        }
+                     }
+                  }
+              }
            }
       }
 }

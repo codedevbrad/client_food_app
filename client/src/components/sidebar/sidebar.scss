@@ -35,8 +35,21 @@
             }
         }
         .incoming_empty {
-             width: 100%; background: $primary_light_blue; text-align: center; padding: 15px 10px;
-             font-size: 0.68em;
+             p { width: 100%; background: $primary_light_blue; text-align: center; padding: 15px 10px;
+                font-size: 0.68em; position: relative;
+              }
+
+             p:after {
+               content: " "; position: absolute; right: 60px;  bottom: -15px;
+               border-top: 15px solid $primary_light_blue;  border-right: 15px solid transparent;
+               border-left: 15px solid transparent; border-bottom: none;
+             }
+
+            div {
+               width: 100%; height: auto; padding-top: 10px;
+               img { width: 100%; height: auto; }
+            }
+
         }
 }
 
@@ -67,14 +80,33 @@
 }
 
 .statistics_fullPage {
-    height: 100%; background: white; overflow-y: scroll; padding: 20px;
-    section { }
-    #stat_profits { float: right; width: 40%; height: 200px; }
-    #stat_graph   { float: left; width: 60%; overflow: hidden; padding: 10px; background: #d3e7ff3d;
-        > canvas  { width: 100% !important; }
+    height: 100%; background: white; overflow-y: scroll; display: flex; flex-direction: column;
+
+    .statistics_tile { display: flex; flex-direction: row; align-items: center;
+                       width: 100%; min-height: 55px; background: white; box-shadow: 0px 6px 18px 0px #f8f8f8;
+
+           > div { width: 100%; height: 100%; display: flex; align-items: center; padding: 0 20px; }
+           .filter_by_date { width: auto; white-space: nowrap; margin-right: 10px; }
+
+        ul { box-shadow: 4px 3px 0px 0px #000000; border: 1px solid black; }
+        ul > li { display: inline-block; padding: 5px 10px; border-right: 1px solid black; font-size: 0.66em; }
+        ul > li:last-child { border: none; }
+
     }
-
-
-
-
+    .statistics_body { width: 100%; height: 100%; padding: 20px;
+        .span_blue { font-size: 0.67em; }
+        #stat_topOrders { float: right; width: 40%;
+            padding: 0 10px;
+            h3.title { padding-left: 20px; }
+        }
+        #stat_graph   { float: left; width: 60%; overflow: hidden; padding: 20px; box-shadow: 2px 0px 7px #d9d9d980;
+                        border-radius: 6px;
+            h3 { padding-bottom: 15px; }
+            > canvas  { width: 100% !important;  }
+        }
+    }
 }
+
+
+
+//
