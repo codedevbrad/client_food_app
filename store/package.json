@@ -1,21 +1,23 @@
 {
-  "name": "food_store_front_end",
-  "version": "1.0.0",
-  "description": "",
-  "main": "server",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "next start ./react_server",
-    "dev": "next ./react_server",
-    "build": "next build ./react_server"
-  },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "@zeit/next-css": "^1.0.1",
-    "express": "^4.17.1",
-    "next": "^9.0.3",
-    "react": "^16.9.0",
-    "react-dom": "^16.9.0"
-  }
+    "name": "food_store_front_end",
+    "version": "1.0.0",
+    "description": "",
+    "main": "server",
+    "scripts": {
+        "test":   "echo \"Error: no test specified\" && exit 1",
+        "start":  "next start ./react_server",
+        "dev":    "next ./react_server",
+        "build":  "next build ./react_server",
+        "testme": "npm run build && npm run start"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "@zeit/next-css": "^1.0.1",
+        "concurrently": "^5.0.0",
+        "express": "^4.17.1",
+        "next": "^9.0.3",
+        "react": "^16.9.0",
+        "react-dom": "^16.9.0"
+    }
 }

@@ -770,7 +770,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! next/head */ "next/head");
 /* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_head__WEBPACK_IMPORTED_MODULE_1__);
-var _jsxFileName = "C:\\a. projects\\main apps\\8. client-food ( garn )\\store\\react_server\\components\\header\\head.js";
+var _jsxFileName = "C:\\a. projects\\main apps\\08. client-food ( garn )\\store\\react_server\\components\\header\\head.js";
 
 
 
@@ -846,7 +846,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! next/link */ "../node_modules/next/link.js");
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_1__);
-var _jsxFileName = "C:\\a. projects\\main apps\\8. client-food ( garn )\\store\\react_server\\components\\header\\navbar.js";
+var _jsxFileName = "C:\\a. projects\\main apps\\08. client-food ( garn )\\store\\react_server\\components\\header\\navbar.js";
 
 
 
@@ -889,7 +889,7 @@ const NavBar = () => {
       lineNumber: 12
     },
     __self: undefined
-  }, " about "), " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+  }, " about me "), " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
     __source: {
       fileName: _jsxFileName,
       lineNumber: 13
@@ -926,7 +926,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(next_head__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _static_css_app_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../static/css/app.css */ "./static/css/app.css");
 /* harmony import */ var _static_css_app_css__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_static_css_app_css__WEBPACK_IMPORTED_MODULE_4__);
-var _jsxFileName = "C:\\a. projects\\main apps\\8. client-food ( garn )\\store\\react_server\\pages\\index.js";
+var _jsxFileName = "C:\\a. projects\\main apps\\08. client-food ( garn )\\store\\react_server\\pages\\index.js";
 
 
 
@@ -934,36 +934,45 @@ var _jsxFileName = "C:\\a. projects\\main apps\\8. client-food ( garn )\\store\\
 
 
 const Main = () => {
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(() => {
+    console.log('loaded component');
+  }, []);
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     id: "Main",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 15
+      lineNumber: 19
     },
     __self: undefined
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_header_head__WEBPACK_IMPORTED_MODULE_1__["default"], {
     title: "welcome",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 17
+      lineNumber: 21
     },
     __self: undefined
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_header_navbar__WEBPACK_IMPORTED_MODULE_2__["default"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 18
+      lineNumber: 22
     },
     __self: undefined
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(next_head__WEBPACK_IMPORTED_MODULE_3___default.a, {
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 22
+      lineNumber: 23
+    },
+    __self: undefined
+  }, " hi "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(next_head__WEBPACK_IMPORTED_MODULE_3___default.a, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 26
     },
     __self: undefined
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("title", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 23
+      lineNumber: 27
     },
     __self: undefined
   }, " Custom ")));
@@ -991,7 +1000,7 @@ const Main = () => {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\a. projects\main apps\8. client-food ( garn )\store\react_server\pages\index.js */"./pages/index.js");
+module.exports = __webpack_require__(/*! C:\a. projects\main apps\08. client-food ( garn )\store\react_server\pages\index.js */"./pages/index.js");
 
 
 /***/ }),

@@ -7,11 +7,12 @@ const ItemSchema = new mongoose.Schema ({
   menuSection: { type: String , required: true } ,
   price:       { type: String , required: true } ,
   menuItemId:  { type: String , required: true } ,
-  inStock:     { type: String , required: true } 
+  inStock:     { type: String , required: true }
 });
 
 const OrderItemSchema = new mongoose.Schema ({
    customerName : { type: String  , required: true } ,
+   location:      { type: String  , required: true } ,
    orderTime :    { type: Date    , required: true } ,
    pickupTime :   { type: Date    , required: true } ,
    food:  [ ItemSchema ]  ,

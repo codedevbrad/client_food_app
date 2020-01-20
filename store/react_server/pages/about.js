@@ -12,7 +12,7 @@ const Random = () => {
 
       <Head title="about us" />
       <NavBar />
-
+      <h1> hello </h1> 
     </div>
   );
 }

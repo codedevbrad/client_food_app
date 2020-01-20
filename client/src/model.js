@@ -36,29 +36,32 @@ export default {
             const body   = JSON.stringify( user );
 
             axios.post('/api/staff/login', body , config )
-                  .then ( res =>  { return res.data })
-                  .then ( user => {
-                        actions.authenticate( user );
-                   })
-                  .catch( err => {
-                    actions.setAuthError( err.response.data );
-                  });
+                  .then (  res => res.data )
+                  .then ( user => actions.authenticate( user ))
+                  .catch( err =>  actions.setAuthError( err.response.data ));
        }),
 
-       getUser: thunk( actions => {
+       logoutUser: thunk( ( actions ) => {
+            axios.get('/api/staff/logout')
+                 .then(  res => actions.logoutActions() )
+                 .catch( err => actions.logError( err.response.data ));
+       }),
+
+       getUser: thunk( ( actions ) => {
          axios.get('/api/staff/get')
            .then ( res  => res.data )
-           .then ( obj  => {
-               actions.authenticate( obj );
-           })
-           .catch( err  => {
-               actions.logError( err.response.data );
-           });
+           .then ( obj  => actions.authenticate( obj ))
+           .catch( err  => actions.logError( err.response.data ));
        }),
 
        authenticate: action( ( state , user ) => {
             state.user = user;
             state.isUserAuth = true;
+       }),
+
+       logoutActions: action( ( state ) => {
+           state.user = { };
+           state.isUserAuth = false;
        }),
 
        setAuthError: action( ( state , error ) => {

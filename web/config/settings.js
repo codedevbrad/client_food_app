@@ -4,9 +4,8 @@ const session  = require('express-session');
 const cors     = require('cors');
 const passport = require('passport');
 const Pusher   = require('pusher');
-const cloudary = require('cloudinary');
 const formData = require('express-form-data');
-const morgan   = require('morgan');
+const morgan   = require('morgan');;
 
 require('./passport') ( passport );
 
@@ -40,11 +39,11 @@ module.exports = {
             encrypted: true
         });
     } ,
-    cloudinary: ( ) => {
-        return cloudary.config({
+    cloudinaryConfig: ( ) => {
+        return {
             cloud_name:  process.env.cloud_name,
             api_key:     process.env.cloud_key ,
             api_secret:  process.env.cloud_secret
-        });
+        };
     }
 }

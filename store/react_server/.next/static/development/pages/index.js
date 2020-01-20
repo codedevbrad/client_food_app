@@ -6324,10 +6324,10 @@ exports.formatWithValidation = formatWithValidation;
 
 /***/ }),
 
-/***/ "../node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2F&absolutePagePath=C%3A%5Ca.%20projects%5Cmain%20apps%5C8.%20client-food%20(%20garn%20)%5Cstore%5Creact_server%5Cpages%5Cindex.js!./":
-/*!****************************************************************************************************************************************************************************************************************************!*\
-  !*** ../node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2F&absolutePagePath=C%3A%5Ca.%20projects%5Cmain%20apps%5C8.%20client-food%20(%20garn%20)%5Cstore%5Creact_server%5Cpages%5Cindex.js ***!
-  \****************************************************************************************************************************************************************************************************************************/
+/***/ "../node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2F&absolutePagePath=C%3A%5Ca.%20projects%5Cmain%20apps%5C08.%20client-food%20(%20garn%20)%5Cstore%5Creact_server%5Cpages%5Cindex.js!./":
+/*!*****************************************************************************************************************************************************************************************************************************!*\
+  !*** ../node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2F&absolutePagePath=C%3A%5Ca.%20projects%5Cmain%20apps%5C08.%20client-food%20(%20garn%20)%5Cstore%5Creact_server%5Cpages%5Cindex.js ***!
+  \*****************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10654,7 +10654,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! next/head */ "../node_modules/next-server/dist/lib/head.js");
 /* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_head__WEBPACK_IMPORTED_MODULE_1__);
-var _jsxFileName = "C:\\a. projects\\main apps\\8. client-food ( garn )\\store\\react_server\\components\\header\\head.js";
+var _jsxFileName = "C:\\a. projects\\main apps\\08. client-food ( garn )\\store\\react_server\\components\\header\\head.js";
 
 
 
@@ -10730,7 +10730,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! next/link */ "../node_modules/next/link.js");
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_1__);
-var _jsxFileName = "C:\\a. projects\\main apps\\8. client-food ( garn )\\store\\react_server\\components\\header\\navbar.js";
+var _jsxFileName = "C:\\a. projects\\main apps\\08. client-food ( garn )\\store\\react_server\\components\\header\\navbar.js";
 
 
 
@@ -10773,7 +10773,7 @@ var NavBar = function NavBar() {
       lineNumber: 12
     },
     __self: this
-  }, " about "), " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+  }, " about me "), " "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
     __source: {
       fileName: _jsxFileName,
       lineNumber: 13
@@ -10810,7 +10810,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(next_head__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _static_css_app_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../static/css/app.css */ "./static/css/app.css");
 /* harmony import */ var _static_css_app_css__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_static_css_app_css__WEBPACK_IMPORTED_MODULE_4__);
-var _jsxFileName = "C:\\a. projects\\main apps\\8. client-food ( garn )\\store\\react_server\\pages\\index.js";
+var _jsxFileName = "C:\\a. projects\\main apps\\08. client-food ( garn )\\store\\react_server\\pages\\index.js";
 
 
 
@@ -10818,36 +10818,45 @@ var _jsxFileName = "C:\\a. projects\\main apps\\8. client-food ( garn )\\store\\
 
 
 var Main = function Main() {
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    console.log('loaded component');
+  }, []);
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     id: "Main",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 15
+      lineNumber: 19
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_header_head__WEBPACK_IMPORTED_MODULE_1__["default"], {
     title: "welcome",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 17
+      lineNumber: 21
     },
     __self: this
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_header_navbar__WEBPACK_IMPORTED_MODULE_2__["default"], {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 18
+      lineNumber: 22
     },
     __self: this
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(next_head__WEBPACK_IMPORTED_MODULE_3___default.a, {
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 22
+      lineNumber: 23
+    },
+    __self: this
+  }, " hi "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(next_head__WEBPACK_IMPORTED_MODULE_3___default.a, {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 26
     },
     __self: this
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("title", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 23
+      lineNumber: 27
     },
     __self: this
   }, " Custom ")));
@@ -10858,13 +10867,13 @@ var Main = function Main() {
 /***/ }),
 
 /***/ 0:
-/*!*******************************************************************************************************************************************************************************!*\
-  !*** multi next-client-pages-loader?page=%2F&absolutePagePath=C%3A%5Ca.%20projects%5Cmain%20apps%5C8.%20client-food%20(%20garn%20)%5Cstore%5Creact_server%5Cpages%5Cindex.js ***!
-  \*******************************************************************************************************************************************************************************/
+/*!********************************************************************************************************************************************************************************!*\
+  !*** multi next-client-pages-loader?page=%2F&absolutePagePath=C%3A%5Ca.%20projects%5Cmain%20apps%5C08.%20client-food%20(%20garn%20)%5Cstore%5Creact_server%5Cpages%5Cindex.js ***!
+  \********************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! next-client-pages-loader?page=%2F&absolutePagePath=C%3A%5Ca.%20projects%5Cmain%20apps%5C8.%20client-food%20(%20garn%20)%5Cstore%5Creact_server%5Cpages%5Cindex.js! */"../node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2F&absolutePagePath=C%3A%5Ca.%20projects%5Cmain%20apps%5C8.%20client-food%20(%20garn%20)%5Cstore%5Creact_server%5Cpages%5Cindex.js!./");
+module.exports = __webpack_require__(/*! next-client-pages-loader?page=%2F&absolutePagePath=C%3A%5Ca.%20projects%5Cmain%20apps%5C08.%20client-food%20(%20garn%20)%5Cstore%5Creact_server%5Cpages%5Cindex.js! */"../node_modules/next/dist/build/webpack/loaders/next-client-pages-loader.js?page=%2F&absolutePagePath=C%3A%5Ca.%20projects%5Cmain%20apps%5C08.%20client-food%20(%20garn%20)%5Cstore%5Creact_server%5Cpages%5Cindex.js!./");
 
 
 /***/ }),

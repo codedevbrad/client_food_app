@@ -4,14 +4,15 @@
   "description": "a food delivery app for a fake client",
   "main": "server",
   "scripts": {
-    "client-install": "cd client && npm install",
-    "client": "npm start --prefix client",
-    "dev": "concurrently \"nodemon server bin/dev './client/src'\" \"npm run client\"",
-    "server": "nodemon server bin/dev"
+    "client-install": "cd ../client && npm install",
+    "client": "cd ../client && npm start",
+    "server": "nodemon server bin/dev",
+    "dev": "concurrently  \"npm run client\" \"nodemon server bin/dev'\""
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.19.1",
     "bcryptjs": "^2.4.3",
     "cloudinary": "^1.16.0",
     "concurrently": "^4.1.1",
@@ -27,6 +28,8 @@
     "path": "^0.12.7",
     "pusher": "^3.0.0",
     "pusher-js": "^5.0.2",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.5",
     "stripe": "^7.10.0"
   },
   "devDependencies": {

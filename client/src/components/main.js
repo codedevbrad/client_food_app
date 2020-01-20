@@ -1,10 +1,11 @@
 import React, { Fragment , useState , useEffect } from 'react';
 import { useStoreState , useStoreActions } from 'easy-peasy';
+import axios from 'axios';
 
 import AdminDashboard from './admin';
 import Login from './login/login';
 
-const Error = ( props ) => {
+const Error = ( { error } ) => {
     const clearError = useStoreActions( actions => actions.clearError );
     const removeError = ( e ) => {
       clearError();
@@ -12,8 +13,8 @@ const Error = ( props ) => {
     return (
       <Fragment>
           <div className="error" onClick={ e => removeError() }>
-            <p> { props.msg } </p>
-            <p className="error_message">  the app seems to not be working as intended. please refresh your browser. </p>
+            <p> { error.msg } </p>
+            <p className="error_message"> { error.portMsg } </p>
           </div>
       </Fragment>
     );
@@ -29,6 +30,11 @@ const MainApp = () => {
 
      useEffect(() => {
        console.log( 'loading component main' );
+
+       axios.get('/api/test')
+          .then(  msg => console.log( msg.data ))
+          .catch( err => console.log( err.response.data ));
+
        clearErrors();
        getUser();
        // eslint-disable-next-line
@@ -38,7 +44,7 @@ const MainApp = () => {
        <Fragment>
 
            { !Object.keys(error).length === false &&
-             <Error msg={ error.msg }/>
+             <Error error={ error } />
            }
 
            <div className="main">

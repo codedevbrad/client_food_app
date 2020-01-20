@@ -27,8 +27,8 @@ exports.user_Login = ( req , res , next ) => {
 
 exports.user_Logout = ( req , res , next ) => {
     req.logout();
-    if ( req.user ) {  throw new Error('something went wrong with logging out');  }
-    res.status(200).json( { logout: true} );
+    if ( req.user ) {  return res.status(500).send({ msg: 'something went wrong logging out' }) }
+    res.status(200).json( { logoutHappened: true} );
 }
 
 exports.user_get = ( req, res, next ) => {
@@ -36,7 +36,7 @@ exports.user_get = ( req, res, next ) => {
     Staff.findById( { _id: req.user._id } )
       .select('-password')
        .then( user => {
-         if ( !user ) { throw new Error('no user found'); }
+         if ( !user ) { return res.status(500).send({ msg: 'no user found' }) }
          res.status( 200 ).json( user );
        })
        .catch( next );

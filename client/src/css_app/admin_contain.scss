@@ -14,11 +14,13 @@
 
             /* left content */
             section.a_main_content_center {
-                width: 100%; height: 100%; padding: 20px 0; padding-left: $padding_adjust;
+                width: 100%; height: auto; padding: 20px 0; padding-left: $padding_adjust;
+                overflow-y: scroll;
             }
             /* right content */
             section.app_sidebar_notifications {
                 width: 30%; height: 100%; background: white; padding: 10px 20px;
+                display: flex; flex-direction: column;
             }
        }
 }

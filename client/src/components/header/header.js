@@ -61,7 +61,7 @@ const Notification = ( ) => {
 
 const Header = ( props ) => {
     const user = props.user;
-
+    const logout = useStoreActions( actions => actions.logoutUser );
      useEffect(() => {
        console.log( 'loading header ');
        // eslint-disable-next-line
@@ -78,7 +78,7 @@ const Header = ( props ) => {
       return (
           <Fragment>
             <div className="dropdown-content">
-                <ul> <li> log out </li>  </ul>
+                <ul> <li onClick={ logout }> log out </li>  </ul>
             </div>
           </Fragment>
        )

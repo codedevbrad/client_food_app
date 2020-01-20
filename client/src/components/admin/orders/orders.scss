@@ -3,13 +3,25 @@
 /* admin orders / menu and incoming */
 
 .admin_main_orders {
-    height: 100%; overflow-y: scroll;
+    height: auto; padding-bottom: 100px; overflow: auto;
 
     h1 { font-size: 2em; }
 
     > section { height: 100%; }
 
     section#orders_left { width: 40%; float: left; height: 100%;
+
+        #orderActive_section {
+            padding: 20px 0;
+            ul.orderActive_section_ul {
+              display: flex; width: 100%; flex-direction: 'row'; flex-wrap: wrap;
+              li.day_is_active { background: $primary_light_blue; }
+
+              li { color: black; flex: 25%; padding: 7px 10px; margin: 5px 10px; margin-left: 0; background: white;
+                   box-shadow:  3px 3px 0px black; border: 1px solid black; cursor: pointer;
+              }
+            }
+        }
 
         #coupons_section {
             .coupons_section_main {

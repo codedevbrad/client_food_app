@@ -10,18 +10,48 @@ import { SortableContainer, SortableElement , arrayMove } from 'react-sortable-h
 import { menuItem , menus } from './order_handlers.js';
 import './orders.scss';
 
-const Orders_info = ( props )=> {
+const OrderDays = ( props ) => {
+
+      const [ weekdaysActive , setWeekdaysActive ] = useState( [
+          { day: 'sunday'   , open: true } , { day: 'monday'   , open: false } , { day: 'tuesday' , open: false } ,
+          { day: 'wednesday', open: true } , { day: 'thursday' , open: true }  , { day: 'friday'  , open: true } ,
+          { day: 'saturday' , open: true }
+      ] );
+      useEffect( ( ) => {
+
+      }, []);
+
+      return (
+        <div id="orderActive_section">
+            <div className="content_section_head">
+                <h1 className="title-m"> decide when to take orders </h1>
+                <p className="content_section_info p-m">
+                    decide when you're open and how people should get in contact with your business.
+                </p>
+            </div>
+            <ul className="orderActive_section_ul">
+                { weekdaysActive.map( ( eachDay ) =>
+                    <li className={ eachDay.open ? 'day_is_active' : '' }>  { eachDay.day } </li>
+                )}
+            </ul>
+        </div>
+      )
+}
+
+const Orders_info = ( props ) => {
 
       return (
 
       <section id="orders_left">
         <h1> order info </h1>
-        <p className="content_section_info"> create coupons and deals for potential visitors </p>
+
+        <OrderDays />
+
         <div id="coupons_section">
             <div className="content_section_head">
                 <h1 className="title-m"> order coupons </h1>
                 <p className="content_section_info p-m">
-                    decide when you're open and how people should get in contact with your business.
+                    decide what coupons should be active.
                 </p>
             </div>
             <ul className="coupons_section_main">
@@ -50,7 +80,9 @@ const Orders_info = ( props )=> {
 }
 
 const Order_menu_items = ( props ) => {
-    const { items , sectionId , } = props;
+    const { items , sectionId , populateOrders } = props;
+
+    const { getOrderMenu } = menus;
     const { editMenuItem , removeMenuItem , cloudinaryUpload } = menuItem;
 
     // food menu item input values...
@@ -83,9 +115,15 @@ const Order_menu_items = ( props ) => {
               const obj =  { product  : newProductVal  , price: newPriceVal , inStock : stockValues[0] ,
                              menuShow : stockValues[1] , imgUrl : imageVal };
               editMenuItem( obj , sectionId , itemId )
-                   .then( array => {
-                       saveAnimation( saveWillChange , [ true , true ] ,  [ false , true ]);
-                       // save array to state...
+                   .then( obj => {
+                           getOrderMenu()
+                                .then(  arr => {
+                                  populateOrders( arr );
+                                  saveAnimation( saveWillChange , [ true , true ] ,  [ false , true ] , ( ) => {
+
+                                  });
+                            })
+                          .catch( err => console.log( err ));
                    })
                    .catch( err => console.log( err ));
           }
@@ -93,10 +131,14 @@ const Order_menu_items = ( props ) => {
               delWillChange( [true , false ] );
               removeMenuItem( sectionId , itemId )
                   .then( array => {
-                      saveAnimation( delWillChange , [ true , true ] ,  [ false , true ] , () => {
-                        // save array to state...
-                        // close modal..
-                      });
+                        getOrderMenu()
+                             .then(  arr => {
+                               populateOrders( arr );
+                               saveAnimation( saveWillChange , [ true , true ] ,  [ false , true ] , ( ) => {
+
+                               });
+                         })
+                       .catch( err => console.log( err ));
                   })
                  .catch( err => console.log( err ));
           }
@@ -162,7 +204,11 @@ const Order_menu_items = ( props ) => {
                                         </div>
                                         <div className="photo_cycle">
                                             <div className="image_menuItem">
-                                                <img src={ imageVal } />
+                                                { imageVal === 'no chosen image' ? (
+                                                  <h3> no chosen image </h3>
+                                                ) : (
+                                                  <img src={ imageVal } />
+                                                )}
                                             </div>
                                         </div>
                                         <div>
@@ -435,7 +481,7 @@ const Orders = () => {
                               </Modal>
                            </ul>
                        </div>
-                        <Order_menu_items sectionId={ element._id } items={ element.sectionItems } index={ index }/>
+                       <Order_menu_items populateOrders={ populateOrders } sectionId={ element._id } items={ element.sectionItems } index={ index }/>
                     </section>
                   ))}
                   </div>
