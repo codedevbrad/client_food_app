@@ -33,14 +33,11 @@ addressKey | secret key for https://postcoder.com/docs/address-lookup#postcode-l
         
 ## starting each service.
 
-### client ( runs on localhost: 3000 ).
-  npm start
-
-### server ( runs on localhost: 5000 ).
-  npm run server
-
-### native  ( runs on expo dev server ).
-  npm run start
+service | runs on | command
+------------ | -------------
+client |localhost: 3000 | npm start
+server |localhost: 5000 | npm server
+native |expo dev server | npm start
   
  <img width="800" alt="client_image" src="https://user-images.githubusercontent.com/46296577/72754535-01e89200-3bc0-11ea-82f1-73aad7981817.PNG">
 
