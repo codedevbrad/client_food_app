@@ -1,5 +1,5 @@
 
-## Tech_stack"
+## Tech_stack
 
     * nodejs with express
     * cloud atlas mongodb and mongoose.
@@ -10,7 +10,7 @@
     * graphql and apollo
     * nodemailer for order success.
 
-### project_structure
+## project_structure
 
         "web    - handles all api requests" ,
         "admin  - allows restaurant to handle orders, menu and table bookings" ,
@@ -18,10 +18,18 @@
         
 ## needed for project.
   
-key name | Second Header
+key name | description
 ------------ | -------------
-stripeKey
-stripeSecret
+DATABASE_ATLAS
+publishable_key 
+stripe_secretKey 
+pusherAppId  
+pusherClient
+pusherSecret
+cloud_name  
+cloud_key   
+cloud_secret
+addressKey
         
 ## starting each service.
 
