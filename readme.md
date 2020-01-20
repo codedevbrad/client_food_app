@@ -34,7 +34,7 @@ addressKey | secret key for https://postcoder.com/docs/address-lookup#postcode-l
 ## starting each service.
 
 service | runs on | command
------------- | -------------
+--------- | ------ | -------
 client |localhost: 3000 | npm start
 server |localhost: 5000 | npm server
 native |expo dev server | npm start
