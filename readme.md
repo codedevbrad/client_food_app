@@ -20,16 +20,16 @@
   
 key name | description
 ------------ | -------------
-DATABASE_ATLAS
-publishable_key 
-stripe_secretKey 
-pusherAppId  
-pusherClient
-pusherSecret
-cloud_name  
-cloud_key   
-cloud_secret
-addressKey
+DATABASE_ATLAS | this is the key needed to interact with your mongodbAtlas cluster.
+publishable_key | your stripe publishable key. should look like: pk_test
+stripe_secretKey | your stripe secret key. should look like: sk_test
+pusherAppId  | .
+pusherClient | .
+pusherSecret | .
+cloud_name   | your cloudinary key name.
+cloud_key    | your cloudinary key.
+cloud_secret | your cloudinary secret.
+addressKey | secret key for https://postcoder.com/docs/address-lookup#postcode-lookup
         
 ## starting each service.
 
