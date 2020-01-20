@@ -1,14 +1,13 @@
 
-## Tech_stack
-
-    * nodejs with express
-    * cloud atlas mongodb and mongoose.
-    * cloudinary image management.
-    * stripe & pusher & chartJs
-    * react , sass for react, react-native with expo.
-    * third-party-apis( genderDetermine & street lookup).
-    * graphql and apollo
-    * nodemailer for order success.
+## Tech_stack:
+* nodejs with express
+* cloud atlas mongodb and mongoose.
+* cloudinary image management.
+* stripe & pusher & chartJs
+* react , sass for react, react-native with expo.
+* third-party-apis( genderDetermine & postcoder ).
+* graphql and apollo
+* nodemailer for order success.
 
 ## project_structure
 
