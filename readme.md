@@ -5,7 +5,7 @@
     * cloud atlas mongodb and mongoose.
     * cloudinary image management.
     * stripe & pusher & chartJs
-    * react , sass for react, react-native
+    * react , sass for react, react-native with expo.
     * third-party-apis( genderDetermine & street lookup).
     * graphql and apollo
     * nodemailer for order success.
@@ -33,13 +33,13 @@ addressKey | secret key for https://postcoder.com/docs/address-lookup#postcode-l
         
 ## starting each service.
 
-### client
+### client ( runs on localhost: 3000 ).
   npm start
 
-### server
+### server ( runs on localhost: 5000 ).
   npm run server
 
-### native
+### native  ( runs on expo dev server ).
   npm run start
   
   
