@@ -39,6 +39,7 @@ client |localhost: 3000 | npm start
 server |localhost: 5000 | npm server
 native |expo dev server | npm start
   
+ ### take a peak at the app.
  <img width="800" alt="client_image" src="https://user-images.githubusercontent.com/46296577/72754535-01e89200-3bc0-11ea-82f1-73aad7981817.PNG">
 
   
