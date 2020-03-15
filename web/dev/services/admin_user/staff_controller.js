@@ -2,8 +2,9 @@
 const mongoose = require('mongoose');
 const bcrypt   = require('bcryptjs');
 const passport = require('passport');
-const Staff    = require('../models/staff');
+const Staff    = require('./staff_model');
 
+require('./passport') ( passport );
 
 exports.user_Login = ( req , res , next ) => {
     // @route  : POST user/auth

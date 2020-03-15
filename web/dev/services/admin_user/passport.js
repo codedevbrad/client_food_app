@@ -1,9 +1,8 @@
 
-
 const LocalStrategy = require('passport-local').Strategy;
+const Staff_model   = require('./staff_model');
 const bcrypt = require('bcryptjs')
 
-var Staff = require('../dev/models/staff')
 
 module.exports = function( passport ) {
 
@@ -12,7 +11,7 @@ module.exports = function( passport ) {
 
                 var query = { username }
 
-                Staff.findOne( query, ( err , user ) => {
+                Staff_model.findOne( query, ( err , user ) => {
 
                         if( err ) { throw err  }
                         if(!user) { return done(null, false );  }
@@ -29,7 +28,7 @@ module.exports = function( passport ) {
         passport.serializeUser(function(user, done) { done(null, user.id);  });
 
         passport.deserializeUser(function(id, done) {
-          Staff.findById(id, function(err, user) {  done(err, user);  });
+          Staff_model.findById(id, function(err, user) {  done(err, user);  });
         });
 
 };

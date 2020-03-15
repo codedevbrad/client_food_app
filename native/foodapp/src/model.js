@@ -20,7 +20,7 @@ export default {
                 break;
               case 'address' :
                 state.order_person.order_address = text;
-                
+                break;
               case 'email' :
                 state.order_person.order_email = text;
                 break;

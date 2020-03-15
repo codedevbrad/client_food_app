@@ -7,8 +7,6 @@ const Pusher   = require('pusher');
 const formData = require('express-form-data');
 const morgan   = require('morgan');;
 
-require('./passport') ( passport );
-
 module.exports = {
 
     middleware: ( app ) => {

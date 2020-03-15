@@ -88,8 +88,8 @@ const OrderIcon = ( ) => {
     )
 }
 
-const OrderAdress = ( addressIsChosen , keyboard ) => {
-    const [ addressValue , setAddress ] = useState( '' );
+const OrderAddress = ( addressIsChosen , keyboard ) => {
+
     const [ postcodeMatches , flipModal ] = useState( false );
     const [ possibleAddresses , setPossibleAddresses ] = useState( [ ] );
 
@@ -100,9 +100,8 @@ const OrderAdress = ( addressIsChosen , keyboard ) => {
         ShoppingApi.addressLookup( addressValue )
             .then( data => {
                   setPossibleAddresses( data );
-                  flipModal( true );
             })
-            .catch( err => console.log(  'err' ));
+            .catch( err => console.log( err ));
     }
 
      const addressMade = ( text ) => {
@@ -111,18 +110,20 @@ const OrderAdress = ( addressIsChosen , keyboard ) => {
      }
 
     return (
-          <View>
+          <View style={ { paddingBottom : 30 } }>
               <Text> type in your postcode, hit done and we'll show a list of possible address's for you to select. </Text>
 
               <TextInput style={ styles.formInputLarge }  placeholder="search your address using your postcode."
-                                 onChangeText={ text => setAddress( text ) }  value={ addressValue } placeholderTextColor={ "black" }
-                                 onSubmitEditing={ () => lookupAdress( addressValue ) }
+                                 onChangeText={ text => addPersonDetails( { text , objToChange : 'address' }) }  value={ order_person.order_address } placeholderTextColor={ "black" }
+                                 onSubmitEditing={ () => lookupAdress(  order_person.order_address ) }
                                  />
-                                 
+
               <View style={ { flex: 0 , flexDirection: 'row' , justifyContent: 'flex-end' , width: '100%' } }>
-                 <Text style={ { width: '70%' , padding: 7 , borderWidth: 1 , backgroundColor: 'ghostwhite' , borderColor: 'lightslategrey' } }>
-                    { order_person.order_address.substring( 0 , 25 ) + ' ...'}
-                 </Text>
+                <TouchableWithoutFeedback onPress={ () => flipModal( true ) }>
+                     <Text style={ { width: '70%' , padding: 7 , borderWidth: 1 , backgroundColor: 'ghostwhite' , borderColor: 'lightslategrey' } }>
+                        { `choose ${ possibleAddresses.length } possible addresses` }
+                     </Text>
+                </TouchableWithoutFeedback>
               </View>
 
               <Modal animationType="slide" transparent={true } visible={ postcodeMatches } >
@@ -134,11 +135,11 @@ const OrderAdress = ( addressIsChosen , keyboard ) => {
                           <SafeAreaView style={ { flex: 6 } }>
                                 <ScrollView style={ { flex: 4 , paddingHorizontal: 20 } }>
                                           { possibleAddresses.map( ( eachAddress , index ) =>
-                                                  <TouchableWithoutFeedback onPress={ () => addressMade( eachAddress.summaryline ) } key={ index }>
+                                                  <TouchableWithoutFeedback onPress={ () => addressMade( eachAddress ) } key={ index }>
                                                       <Text style={ { color: 'black' , fontSize: 16 , flex: 0 , width: '100%' , padding: 15 ,
                                                                       backgroundColor: 'ghostwhite' , marginVertical: 10 }
                                                       }>
-                                                          { eachAddress.summaryline }
+                                                          { eachAddress }
                                                       </Text>
                                                   </TouchableWithoutFeedback>
                                           )}
@@ -198,7 +199,7 @@ const DetailsComponent = ( ) => {
                                          onSubmitEditing={Keyboard.dismiss}
                               />
 
-                              <OrderAdress />
+                              <OrderAddress />
 
                               <TextInput style={ styles.formInput } placeholder="Provide your email address." onChangeText={ ( text ) => addPersonDetails( {text , objToChange: 'email'} ) }
                                          value={ order_person.order_email } placeholderTextColor={ "black" }

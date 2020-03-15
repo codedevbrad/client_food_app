@@ -21,7 +21,7 @@ app.use( '/api'     , require('./dev/api') );
 app.use( '/graphql' , require('./dev/apiGraph'));
 
 // error middleware
-catchError = require('./dev/middleware/errors').errors( app );
+catchError = require('./errors').errors( app );
 
 
-server.listen( process.env.PORT || port , () => console.log('server started'));
+server.listen( process.env.PORT || port , ( ) => console.log('server started'));

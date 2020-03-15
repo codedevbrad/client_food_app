@@ -1,9 +1,9 @@
 
 // incoming models
-const Incoming_Order = require('../models/incoming/order');
-const Incoming_Table = require('../models/incoming/table');
+const Incoming_Order = require('./incoming_models/order');
+const Incoming_Table = require('./incoming_models/table');
 
-const { time , addZero } = require('../middleware/time');
+const { time , addZero } = require('../../service_helpers/time');
 
 module.exports.incomingOrders = ( req , res , next ) => {
     var filter = req.query.filter;
@@ -39,8 +39,8 @@ module.exports.incomingReserve = async ( req , res , next ) => {
                 var tables = array.filter( ( eachTable ) => {
                     return eachTable.tableTime.getDay()  === currDate.getDay() &&
                            eachTable.tableTime.getDate() === currDate.getDate();
-                }).map( ( { _id , bookedName , notes , tableNumber , tableTime }) => {
-                    return { bookedName , _id  , notes , tableNumber , tableTime : time( tableTime )}
+                }).map( ( { _id , bookedName , tableTime , tableParty }) => {
+                    return { bookedName , _id  , tableTime , tableParty , tableTime : time( tableTime )}
                 });
                 res.status( 200 ).send( tables );
               })

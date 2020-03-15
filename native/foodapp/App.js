@@ -15,9 +15,10 @@ import HeadMenu  from './src/components/header/headMenu';
 import HeadTitle from './src/components/header/headTitle';
 
 // import screens
-import HomeScreen  from './src/screens/Home';
-import OrderScreen from './src/screens/Order';
-import MenuScreen  from './src/screens/Menu';
+import HomeScreen   from './src/screens/Home';
+import OrderScreen  from './src/screens/Order';
+import TablesScreen from './src/screens/Tables';
+import MenuScreen   from './src/screens/Menu';
 
 // state management
 import { StoreProvider , createStore } from 'easy-peasy';
@@ -26,12 +27,13 @@ import model from './src/model';
 const store = createStore( model );
 
 var screens = {
-    Home:  HomeScreen ,
-    Order: OrderScreen ,
-    Menu : MenuScreen
+    Home:   HomeScreen  ,
+    Order:  OrderScreen ,
+    Menu :  MenuScreen  ,
+    Tables: TablesScreen
 }
 
-const FoodApp = createAppContainer( createStackNavigator(
+const FoodApp = createAppContainer( createStackNavigator (
       screens ,
       {
           transitionConfig : () => ({

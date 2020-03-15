@@ -71,9 +71,8 @@ const Incoming_Reservations = ( props ) => {
                                       id : table._id ,
                                       name: table.bookedName ,
                                       imgUrl: profiles[0].profile ,
-                                      dates: [ table.tableTime , 'table ' + table.tableNumber ] ,
-                                      request : table.notes }
-                                   }/>
+                                      dates: [ table.tableTime  , 'table of ' + table.tableParty ]
+                                     }}/>
                              )}
                          </ul>
                        )}
@@ -217,16 +216,50 @@ const Incoming = () => {
     )
 }
 
+const SidebarApp = ( { }) => {
+
+    const [ sidebarShouldShow , flipSidebar ] = useState( true );
+    const [ sidebarMain , swapSidebar ] = useState( 0 );
+
+    return (
+      <Fragment>
+          { sidebarShouldShow ? (
+              <section className="app_sidebar_notifications">
+
+                  <div id="sidebar_navigation">
+                      <div className="sidebar_toggle_btn" onClick={ () => flipSidebar( false )}>
+                          <p> <i className="fas fa-bars"></i> </p>
+                      </div>
+                      <ul className="sidebar_nav_ul">
+                          <li onClick={ e => swapSidebar(0) } className={ sidebarMain === 0 ? 'active' : '' }> incoming   </li>
+                          <li onClick={ e => swapSidebar(1) } className={ sidebarMain === 1 ? 'active' : '' }> statistics </li>
+                      </ul>
+                  </div>
+                  { sidebarMain === 0 && <Incoming  /> }
+                  { sidebarMain === 1 && <Statistics_sideBar /> }
+              </section>
+            ) : (
+              <section className="app_sidebar_notification_mini">
+                  <div id="sidebar_navigation">
+                      <div className="sidebar_toggle_btn" onClick={ () => flipSidebar( true )}>
+                          <p> <i className="fas fa-bars"></i> </p>
+                      </div>
+                  </div>
+              </section>
+            )
+          }
+      </Fragment>
+    )
+}
+
 const AdminDashboard = () => {
 
     const clearErrs = useStoreActions( actions => actions.clearAllErrors );
     const user      = useStoreState( state => state.user );
     const adminPage = useStoreState( state => state.adminPage );
 
-    const [ sidebarMain , swapSidebar ] = useState(0);
     useEffect(() => {
          clearErrs();
-         console.log( 'admin sidebar');
          // eslint-disable-next-line
     }, [ ]);
 
@@ -243,20 +276,7 @@ const AdminDashboard = () => {
                     { adminPage === 3 && <Statistics_inDepth /> }
                 </section>
 
-                <section className="app_sidebar_notifications">
-
-                    <div id="sidebar_navigation">
-                        <div className="sidebar_toggle_btn">
-                            <p> <i className="fas fa-bars"></i> </p>
-                        </div>
-                        <ul className="sidebar_nav_ul">
-                            <li onClick={ e => swapSidebar(0) } className={ sidebarMain === 0 ? 'active' : '' }> incoming   </li>
-                            <li onClick={ e => swapSidebar(1) } className={ sidebarMain === 1 ? 'active' : '' }> statistics </li>
-                        </ul>
-                    </div>
-                    { sidebarMain === 0 && <Incoming  /> }
-                    { sidebarMain === 1 && <Statistics_sideBar /> }
-                </section>
+                <SidebarApp />
             </div>
         </div>
     );

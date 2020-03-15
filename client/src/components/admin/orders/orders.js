@@ -30,8 +30,8 @@ const OrderDays = ( props ) => {
                 </p>
             </div>
             <ul className="orderActive_section_ul">
-                { weekdaysActive.map( ( eachDay ) =>
-                    <li className={ eachDay.open ? 'day_is_active' : '' }>  { eachDay.day } </li>
+                { weekdaysActive.map( ( eachDay , index ) =>
+                    <li key={ index } className={ eachDay.open ? 'day_is_active' : '' }>  { eachDay.day } </li>
                 )}
             </ul>
         </div>

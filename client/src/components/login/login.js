@@ -23,31 +23,36 @@ const Login = () => {
 
     return (
       <div className="app_login">
-             <div className="login_container">
+             <header>
 
-                    <div id="top">
-                         <h2> hi . </h2>
-                         <h3>login to the ashcott admin </h3>
-                    </div>
-                    <div id="bottom">
-                        <section>
-                              <AuthErrors />
-                              <form className="auth_form" onSubmit={ e => {
+             </header>
+             <div id="login_center_contain">
+                   <div className="login_container">
+                          <div id="top">
+                               <h2> hi . </h2>
+                               <h3>login to the ashcott admin </h3>
+                          </div>
+                          <div id="bottom">
+                              <section>
+                                    <AuthErrors />
+                                    <form className="auth_form" onSubmit={ e => {
 
-                                 e.preventDefault();
-                                 loginUser( { username , password });
-                               }}>
-                                 <input type="text"     placeholder="username" name="username" onChange={ e => setUsername( e.target.value )} />
-                                 <input type="password" placeholder="password" name="password" onChange={ e => setPassword( e.target.value )}/>
-                                 <button type="submit"  className="submit_form"> Sign in </button>
-                              </form>
-                        </section>
-                        <section className="form_tip_container">
-                              <div className="form_tip">
-                                  <p> Organise the business , take orders and view bookings. </p>
-                              </div>
-                        </section>
-                    </div>
+                                       e.preventDefault();
+                                       loginUser( { username , password });
+                                     }}>
+                                       <input type="text"     placeholder="username" name="username" onChange={ e => setUsername( e.target.value )} />
+                                       <input type="password" placeholder="password" name="password" onChange={ e => setPassword( e.target.value )}/>
+                                       <button type="submit"  className="submit_form"> Sign in </button>
+                                    </form>
+                              </section>
+                              <section className="form_tip_container">
+                                    <div className="form_tip">
+                                        <p> Organise the business , take orders and view bookings. </p>
+                                    </div>
+                                    <div id="form_tip_vector"> </div>
+                              </section>
+                          </div>
+                   </div>
              </div>
       </div>
     );

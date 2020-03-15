@@ -13,6 +13,7 @@ const HomeScreen = ( { navigation } ) => {
         />
 
         <Button title="order food" onPress={() => { navigation.navigate('Order', { itemId: 86, });  }} />
+        <Button title="book a table" onPress={() => { navigation.navigate('Tables', { itemId: 86, });  }} />
       </View>
     );
 }

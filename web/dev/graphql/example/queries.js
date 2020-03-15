@@ -19,7 +19,8 @@ module.exports.query = ( ) => ({
       Getcustomers: () => ({
               type: new GraphQLList( CustomerType ) ,
               async resolve ( parentValue , args ) {
-                     return Staff.find();
+                  if ( true == true ) return new Error('authentication error example');
+                  return Staff.find();
               }
       }),
       Getcustomer: () => ({

@@ -11,6 +11,21 @@
     background: #eae8e8; border: 0px; cursor: pointer;
 }
 
+//button shared by sidebar
+#sidebar_navigation {
+    display: flex; flex-direction: row;  width: 100%;
+
+    .sidebar_toggle_btn {
+         display: flex; align-items: center; justify-content: center; cursor: pointer;
+         margin-right: 15px; background: $primary_darkblue; border-radius: 4px;
+         p { padding: 5px 11px; color: white; }
+    }
+}
+
+.app_sidebar_notification_mini  {
+
+}
+
 .app_sidebar_notifications {
         .incoming_dropdowns {
             padding: 15px 0;
@@ -20,11 +35,6 @@
         #sidebar_navigation {
             display: flex; flex-direction: row;  width: 100%;
 
-           .sidebar_toggle_btn {
-                display: flex; align-items: center; justify-content: center;
-                margin-right: 15px; background: $primary_darkblue; border-radius: 4px;
-                p { padding: 5px 11px; color: white; }
-           }
            .sidebar_nav_ul     {
                 display: flex;  width: 100%;
                 box-shadow: 4px 3px 0px 0px #000000; border: 1px solid black;
@@ -56,7 +66,7 @@
 /* sidebar orders / reservations */
 
 .orders_incoming_sidebar , .reservation_incoming_sidebar {
-       margin-top: 10px; overflow-y: scroll; height: 100%;  margin-bottom: 80px;
+       margin-top: 10px; overflow-y: scroll; height: 100%;
       > ul { width: 100%; display: block; margin: 0 auto;  }
 }
 
@@ -86,12 +96,17 @@
                        width: 100%; min-height: 55px; background: white; box-shadow: 0px 6px 18px 0px #f8f8f8;
 
            > div { width: 100%; height: 100%; display: flex; align-items: center; padding: 0 20px; }
-           .filter_by_date { width: auto; white-space: nowrap; margin-right: 10px; }
+           // dropdown.
+           .statistics_dropdown {
+              h1 {  }
+              svg , i { bottom: 1px; }
+           }
+           .filter_by_date { width: auto; white-space: nowrap; margin-right: 10px;
 
-        ul { box-shadow: 4px 3px 0px 0px #000000; border: 1px solid black; }
-        ul > li { display: inline-block; padding: 5px 10px; border-right: 1px solid black; font-size: 0.66em; }
-        ul > li:last-child { border: none; }
-
+                     ul { box-shadow: 4px 3px 0px 0px #000000; border: 1px solid black; }
+                     ul > li { display: inline-block; padding: 5px 10px; border-right: 1px solid black; font-size: 0.66em; cursor: pointer; }
+                     ul > li:last-child { border: none; }
+            }
     }
     .statistics_body { width: 100%; height: 100%; padding: 20px;
         .span_blue { font-size: 0.67em; }
