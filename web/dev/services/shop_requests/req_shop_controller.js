@@ -1,7 +1,7 @@
 
-const mongoose = require('mongoose');
-const bcrypt   = require('bcryptjs');
-const passport = require('passport');
+// const mongoose = require('mongoose');
+// const bcrypt   = require('bcryptjs');
+// const passport = require('passport');
 const axios    = require('axios');
 
 const Menus          = require('../admin_features/feature_models/order_menu');
@@ -11,20 +11,19 @@ const Incoming_Table = require('../admin_incoming/incoming_models/table');
 const asyncHandleError = require('../../service_helpers/async_support');
 
 const { time , addZero } = require('../../service_helpers/time');
-const fakeAddresses = require('../../../config/locations.js');
+const fakeAddresses = require('./util_order_helpers/_fakeLocations.js');
 
-const config = require('../../../config/settings.js');
+const config = require('../../../config/services.js');
 const pusher = config.pusher();
-
 
 // miscellaneous helpers
 const timeIsAcceptable = require('./util_misc_helpers/acceptableTime').timeIsAcceptable;
 // order helper
-const setupOrder = require('./util_pay_helpers/_setupOrder');
+const setupOrder = require('./util_order_helpers/_setupOrder');
 // payment helpers
-const { itemsDoMatch , calculateCost , makePurchase } = require('./util_pay_helpers/_chargeCustomer');
+const { itemsDoMatch , calculateCost , makePurchase } = require('./util_order_helpers/_chargeCustomer');
 // save order helper
-const saveOrderReq = require('./util_pay_helpers/_saveOrder');
+const saveOrderReq = require('./util_order_helpers/_saveOrder');
 
 
 const matchitemsResult = async ( order ) => {
@@ -39,17 +38,21 @@ const matchitemsResult = async ( order ) => {
           throw new Error( err );
       }
 }
+exports.testMatchItems = matchitemsResult;
 
 exports.handleOrderFromShop = asyncHandleError( async( req , res , next ) => {
 
-    // const { customerName , deliveryNotes , dateFor } = req.body;
     const { order_name ,  order_email , order_details , order_at , order_address } = req.body.user;
     const orderUnclean = req.body.orderUnclean;
 
     let { orderTime , pickupTime } = setupOrder( order_at );
+
 	  let { getOrderTotal , orderdoesMatch , stripeOrder } = await matchitemsResult( orderUnclean );
 
-		const newOrder = new Incoming_Order( { customerName: order_name , orderTime , pickupTime ,
+		const newOrder = new Incoming_Order( { customerName: order_name ,
+																					 customerEmail : order_email ,
+			                                     orderTime: orderTime ,
+																					 pickupTime : pickupTime ,
 																					 food : orderdoesMatch , deliveryNotes : order_details,
 																					 totalCost : getOrderTotal , isSuccess : false ,
 																					 location: order_address

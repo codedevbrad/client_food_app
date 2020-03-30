@@ -1,5 +1,10 @@
 
 module.exports.errors = function( app ) {
+  
+  // error 404
+  app.use( ( req , res , next ) => {
+    res.status(404).send('could not find page');
+  });
 
   // error 500
   app.use( ( err , req , res , next ) => {

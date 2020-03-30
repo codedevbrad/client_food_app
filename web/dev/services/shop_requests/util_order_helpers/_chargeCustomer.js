@@ -4,7 +4,9 @@ const stripe = require('stripe') ( process.env.stripe_secretKey );
 
 const findMenuQuery = async ( order , i  ) => {
     try {
-        return await Menus.findOne( { _id : order[ i ].menuSection }  , { sectionItems : { $elemMatch : { _id : order[ i ].menuItemId } } } );
+        return await Menus.findOne( { _id : order[ i ].menuSection }  ,
+                                    { sectionItems : { $elemMatch : { _id : order[ i ].menuItemId } } }
+                                  );
 
     } catch ( err ) {
         throw 'item from order is not a valid menu item';
@@ -19,14 +21,16 @@ const itemsDoMatch = async( order ) => {
               for ( var i = 0; i < order.length; i++ ) {
                     console.log( 'each loop' , i );
                     item = { };
-                    try { 
+                    try {
                         let query = await findMenuQuery(  order , i )
                                  .then( obj => {
                                        item.menuSection = obj._id;
+                                       item.sectionWas  = order[i].sectionName;
                                        return obj.sectionItems[0];
                                  })
                                  .then( obj => {
-                                      item.itemName = obj.product; item.menuItemId = obj._id; item.quantity = order[i].quantity;
+                                      item.itemName = obj.product; item.menuItemId = obj._id;
+                                      item.quantity = order[i].quantity;
                                       item.inStock  = obj.inStock; item.price = obj.price;
                                       foundItems.push( item );
                                  });

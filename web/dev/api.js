@@ -4,18 +4,16 @@ const express  = require('express');
 const api      = express.Router();
 
 // admin auth middleware
-const AdminAuthController  = require('./service_auth/authcheck' );
+const AdminAuthController = require('./service_checks/authcheck' );
 // admin user controller
-const AdminUserController  = require('./services/admin_user/staff_controller' );
+const AdminUserController = require('./services/admin_user/staff_controller' );
 // admin fetching order and tables.
 const AdminController_inc = require('./services/admin_incoming/req_incoming_controller');
 // admin feature controller
 const AdminController_fts_menu = require('./services/admin_features/feature_menu_controller');
 const AdminController_fts_cms  = require('./services/admin_features/feature_cms_controller');
-
 // shopping requests controller
 const ShopController = require('./services/shop_requests/req_shop_controller');
-
 
 // shop request ( getting information from api )
 api.get('/client/addresslookup' , ShopController.handleAddressLookup );

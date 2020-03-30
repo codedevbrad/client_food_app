@@ -4,6 +4,9 @@ module.exports = { GraphQLObjectType  ,
                    GraphQLInt ,
                    GraphQLSchema ,
                    GraphQLNonNull ,
-                   GraphQLList
-                   
+                   GraphQLList ,
+                   GraphQLBoolean ,
+                   GraphQLInputObjectField  ,
+                   GraphQLInt
+
            } = require('graphql');

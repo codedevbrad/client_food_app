@@ -1,16 +1,18 @@
 {
-    "appName" : "grubEats" ,
-    "project_purpose": "to be filed in" ,
+    "appName" : "aschott restaurant" ,
+    "project_purpose": "showcases a fake food store controlled via an admin web app. food to order is served via a native app.
+                       all orders bought and tables booked are stored as analytics
+                      with mapping to showcase data" ,
     "created_by": "bradley lumber" ,
     "tech_stack": [
         "nodejs with express" , "mongodb and mongoose" , "cloudinary" , "stripe" , "pusher" , "chartJs" ,
-        "react" , "sass for react" , "react-native" , "third-party-apis( genderDetermine & street lookup)" , "redux for state management" ,
-        "graphql and apollo" , "nodemailer for order success"
+        "react" , "sass for react" , "react-native" , "third-party-apis( genderDetermine & street lookup)" ,
+        "redux for state management" , "graphql and apollo" , "nodemailer for order success" ,
+        "leaflet_react" , "sessions for data caching"
     ],
-    "project_structure" :
-        [
+    "project_structure" : [
             "web    - handles all api requests" ,
             "admin  - allows restaurant to handle orders, menu and table bookings" ,
             "native - native app for users to purchase food and reserve rables"
-        ]
+    ]
 }

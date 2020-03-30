@@ -3,7 +3,7 @@ let cloudinary = require('cloudinary')
 const Detail   = require('./feature_models/detail').infoDetails;
 const Cms      = require('./feature_models/detail').cms;
 
-const config   = require('../../../config/settings.js') ,
+const config   = require('../../../config/services.js') ,
      cloudKeys = config.cloudinaryConfig();
     cloudinary.config( cloudKeys );
 

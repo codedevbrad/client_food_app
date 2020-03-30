@@ -6,8 +6,13 @@
   "scripts": {
     "client-install": "cd ../client && npm install",
     "client": "cd ../client && npm start",
-    "server": "nodemon server bin/dev",
-    "dev": "concurrently  \"npm run client\" \"nodemon server bin/dev'\""
+    "server": "nodemon bin/dev server",
+    "dev": "concurrently  \"npm run client\" \"npm run server\"",
+    "test_service_incoming": " " ,
+    "test_service_features": " " ,
+    "test_service_incoming": " " ,
+    "test_service_user":     " " ,
+    "test_service_shopRes":  " "
   },
   "author": "",
   "license": "ISC",
@@ -23,6 +28,7 @@
     "express-session": "^1.16.2",
     "graphql": "^14.4.2",
     "mongoose": "^5.6.9",
+    "nodemailer": "^6.4.5",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "path": "^0.12.7",

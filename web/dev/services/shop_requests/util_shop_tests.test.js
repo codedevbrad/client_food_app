@@ -2,35 +2,30 @@ var express = require('express');
 var test    = express.router();
 
 // models.
-{ "user": {
-	"order_name": "Brad lumber",
-    "order_email": "Brad_124@hotmail.co.uk",
-	"order_details": "Please knock loudly",
-	"order_at": "16:15" ,
-	"order_address": "19, Anthony Road, Street, Somerset, BA16 0AE"
+{
+	"user": {
+			"order_name": "Brad lumber",
+		  "order_email": "Brad_124@hotmail.co.uk",
+			"order_details": "Please knock loudly" ,
+			"order_at": "16:15" ,
+			"order_address": "19, Anthony Road, Street, Somerset, BA16 0AE"
    } ,
    "orderUnclean" : [
-	  	 {
-			  	"menuItemId": "5e18abfc2c9e832c6c49128f",
+	     	  {
+			  	"menuItemId": "5e80c304713856055c4d4e0b" ,
 	    		"quantity": "1" ,
-	    		"menuSection": "5e0f366833071e4b04e66bad"
-			  }
+	    		"menuSection": "5e0f3fe933071e4b04e66bb7",
+	    		"sectionName" : "mains and grills"
+			  },
+			  {
+ 			  	"menuItemId": "5e18abfc2c9e832c6c49128f" ,
+ 	    		"quantity": "2" ,
+ 	    		"menuSection": "5e0f366833071e4b04e66bad" ,
+ 	    		"sectionName" : "starters and nibbles"
+ 			  }
     ]
 }
 
-// 1 bad id.
-[
-  	{
-		   "menuItemId": "5e18abfc2c9e832c6c49128f",
-			 "quantity": "1" ,
-			 "menuSection": "5e0f366833071e4b04e66bad"
-		 }  ,
-		 {
-		   "menuItemId": "5e18abfc2c9e832c6128f",
-			 "quantity": "1" ,
-			 "menuSection": "5e0f36681e4b04e66bad"
-		 }
-]
 
 // order objects for testing
 var order_test_fail = null;
