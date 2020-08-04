@@ -29,7 +29,6 @@ module.exports.orderType = new GraphQLObjectType ({
     name: 'orders' ,
     fields: () => ({
         id:            { type: GraphQLString  } ,
-
         customerName : { type: GraphQLString  } ,
         customerEmail: { type: GraphQLString  } ,
         location:      { type: GraphQLString  } ,

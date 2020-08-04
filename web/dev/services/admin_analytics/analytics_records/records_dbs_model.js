@@ -46,5 +46,5 @@ const AnalyticsAll = new mongoose.Schema ({
   top5week:     [ DatePointer ]
 });
 
-
+module.exports.analytics_all_model_test = AnalyticsAll;
 module.exports.analytics_all_model  = mongoose.model('analytics_allDatas', AnalyticsAll );

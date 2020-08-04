@@ -1,8 +1,8 @@
 require('../util_misc_helpers/graphql_objs');
 
 // orders and tables models
-const Incoming_Order = require('../../admin_incoming/incoming_models/order');
-const Incoming_Table = require('../../admin_incoming/incoming_models/table');
+const Incoming_Order = require('../../admin_incoming/incoming_models/order').orders;
+const Incoming_Table = require('../../admin_incoming/incoming_models/table').tables;
 
 const Incoming_graphql_models = require('../util_misc_helpers/data_graphql_model');
 const OrderType = Incoming_graphql_models.orderType;
@@ -10,6 +10,10 @@ const TableType = Incoming_graphql_models.tableType;
 
 var dateHelpers = require('../util_misc_helpers/dateFormats');
 var dateValues  = dateHelpers.returnDates;
+
+// @ takes day / month / year as format
+// @ takes year value as a number
+// @ takes a conditional value2 to specify an exact date.
 
 module.exports.queryOrders = ( ) => ({
       GetOrdersBy: ( ) => ({
@@ -29,6 +33,7 @@ module.exports.queryOrders = ( ) => ({
                   return Incoming_Order.find()
               }
       }) ,
+
       GetOrder: () => ({
               type: OrderType ,
               args: { id: { type: GraphQLString } },

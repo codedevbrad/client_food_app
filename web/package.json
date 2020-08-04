@@ -7,12 +7,7 @@
     "client-install": "cd ../client && npm install",
     "client": "cd ../client && npm start",
     "server": "nodemon bin/dev server",
-    "dev": "concurrently  \"npm run client\" \"npm run server\"",
-    "test_service_incoming": " " ,
-    "test_service_features": " " ,
-    "test_service_incoming": " " ,
-    "test_service_user":     " " ,
-    "test_service_shopRes":  " "
+    "dev": "concurrently  \"npm run client\" \"npm run server\"" 
   },
   "author": "",
   "license": "ISC",

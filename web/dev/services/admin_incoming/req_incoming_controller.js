@@ -1,9 +1,9 @@
 
 // incoming models
-const Incoming_Order = require('./incoming_models/order');
-const Incoming_Table = require('./incoming_models/table');
+const Incoming_Order = require('./incoming_models/order').orders;
+const Incoming_Table = require('./incoming_models/table').tables;
 
-const { time , addZero } = require('../../service_helpers/time');
+const { time } = require('../../service_helpers/time');
 
 module.exports.incomingOrders = ( req , res , next ) => {
     var filter = req.query.filter;

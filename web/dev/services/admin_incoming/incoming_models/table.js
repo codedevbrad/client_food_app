@@ -1,7 +1,7 @@
 // schema object...
 const mongoose = require('mongoose');
 
-const ReservationSchema = new mongoose.Schema ({
+const TablesSchema = new mongoose.Schema ({
      bookedName:   { type: String   , required: true } ,
      tableParty:   { type: String   , required: true } ,
      tableTime:    { type: Date     , required: true } ,
@@ -9,4 +9,5 @@ const ReservationSchema = new mongoose.Schema ({
      tableDate:    { type: Date     , default: Date.now }
 });
 
-module.exports = mongoose.model('incoming_tables', ReservationSchema );
+module.exports.tables_test = TablesSchema;
+module.exports.tables = mongoose.model('incoming_tables', TablesSchema );

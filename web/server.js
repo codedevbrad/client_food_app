@@ -18,11 +18,11 @@ mongoose.connect( process.env.DATABASE_ATLAS , { useNewUrlParser: true } )
         .catch( err => console.log( err ));
 
 // api's
+app.use( '/api/test', require('./dev/api_tests'));
 app.use( '/api'     , require('./dev/api') );
 app.use( '/graphql' , require('./dev/apiGraph'));
 
 // error middleware
 catchError = require('./dev/errors').errors( app );
-
 
 server.listen( process.env.PORT || port , ( ) => console.log('server started'));

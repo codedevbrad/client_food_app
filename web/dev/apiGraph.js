@@ -18,10 +18,10 @@ graphApi.use( '/analytics/incoming' , GraphQl ({
      schema:   require('./services/admin_analytics/analytics_incoming/incoming_schema.js').incoming_data ,
      graphiql: true
 }));
-
-graphApi.use( '/analytics/records' , GraphQl ({
-     schema:   require('./services/admin_analytics/analytics_records/records_schema.js').analytic_records ,
-     graphiql: true
-}));
+//
+// graphApi.use( '/analytics/records' , GraphQl ({
+//      schema:   require('./services/admin_analytics/analytics_records/records_schema.js').analytic_records ,
+//      graphiql: true
+// }));
 
 module.exports = graphApi;

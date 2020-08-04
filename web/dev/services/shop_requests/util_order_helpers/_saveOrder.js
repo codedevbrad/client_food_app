@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const { time , addZero } = require('../../../service_helpers/time');
+const { time } = require('../../../service_helpers/time');
 
 module.exports = ( newOrder ) => {
         return newOrder.save()

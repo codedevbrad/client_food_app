@@ -26,8 +26,8 @@ module.exports.analyticsGraphTypes = new GraphQLObjectType ({
     name: 'analyticsYear' ,
     fields: () => ({
         id:            { type: GraphQLString } ,
-        analytic_year: { type: GraphQLString } ,
         last_updated:  { type: GraphQLString } ,
+        analytic_year: { type: GraphQLString } ,
         all_orders:    { type: new GraphQLList( OrderType ) }   ,
         all_tables:    { type: new GraphQLList( TableType ) }   ,
         top5Year:      { type: new GraphQLList( ItemPointer ) } ,

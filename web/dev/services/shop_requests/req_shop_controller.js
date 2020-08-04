@@ -5,8 +5,8 @@
 const axios    = require('axios');
 
 const Menus          = require('../admin_features/feature_models/order_menu');
-const Incoming_Order = require('../admin_incoming/incoming_models/order');
-const Incoming_Table = require('../admin_incoming/incoming_models/table');
+const Incoming_Order = require('../admin_incoming/incoming_models/order').orders;
+const Incoming_Table = require('../admin_incoming/incoming_models/table').tables;
 
 const asyncHandleError = require('../../service_helpers/async_support');
 
@@ -25,7 +25,6 @@ const { itemsDoMatch , calculateCost , makePurchase } = require('./util_order_he
 // save order helper
 const saveOrderReq = require('./util_order_helpers/_saveOrder');
 
-
 const matchitemsResult = async ( order ) => {
 			try {
           let orderdoesMatch = await itemsDoMatch ( order );
@@ -38,7 +37,6 @@ const matchitemsResult = async ( order ) => {
           throw new Error( err );
       }
 }
-exports.testMatchItems = matchitemsResult;
 
 exports.handleOrderFromShop = asyncHandleError( async( req , res , next ) => {
 
@@ -64,7 +62,7 @@ exports.handleOrderFromShop = asyncHandleError( async( req , res , next ) => {
     pusher.trigger('orders', 'new', { "msg": "new order" , "order": savedOrder });
     pusher.trigger('notification' , 'new' , { "msg": 'new order' });
 
-    res.status( 200 ).send( { order : savedOrder , payment: getOrderTotal } );
+    res.status( 200 ).send( { order : savedOrder , payment: getOrderTotal });
 });
 
 exports.populateOrderTimes = ( req , res , next ) => {
@@ -118,12 +116,13 @@ exports.handleAddressLookup = ( req , res , next ) => {
          return next('no value for address supplied');
     }
     const address_url = 'https://ws.postcoder.com/pcw/' + process.env.addressKey + '/address/uk/' + address;
-    axios.get( address_url )
-        .then(  obj => res.status( 200 ).send( obj.data ))
-        .catch( err =>  {
-            console.log( 'api could not get list of addresses from postcoder. check errors on their service');
-            res.status(200).send( fakeAddresses.fakeAddresses );
-        });
+		res.status(200).send( fakeAddresses.fakeAddresses );
+    // axios.get( address_url )
+    //     .then(  obj => res.status( 200 ).send( obj.data ))
+    //     .catch( err =>  {
+    //         console.log( 'api could not get list of addresses from postcoder. check errors on their service');
+    //         res.status(200).send( fakeAddresses.fakeAddresses );
+    //     });
 }
 
 //

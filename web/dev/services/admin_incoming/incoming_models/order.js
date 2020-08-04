@@ -19,10 +19,19 @@ const OrderItemSchema = new mongoose.Schema ({
    orderTime :    { type: Date    , required: true } ,
    pickupTime :   { type: Date    , required: true } ,
    food:  [ ItemSchema ]  ,
-   
+
    deliveryNotes: { type: String  , required: true } ,
    totalCost:     { type: String  , required: true } ,
-   isSuccess:     { type: Boolean , default: false }
+   isSuccess:     { type: Boolean , default: false } ,
+   location:      { type: String  , required: true } ,
+   latLong:       {
+      position: {
+          Latitude:  String ,
+          Longitude: String
+      }
+   }
 });
 
-module.exports = Orders = mongoose.model('incoming_orders', OrderItemSchema );
+module.exports.orders_test = OrderItemSchema;
+module.exports.orders = mongoose.model('incoming_orders', OrderItemSchema );
+module.exports.orders_test_db = mongoose.model('incoming_orders_tests', OrderItemSchema );

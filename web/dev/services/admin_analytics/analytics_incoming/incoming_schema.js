@@ -19,3 +19,4 @@ const RootIncomingQuery = new GraphQLObjectType ({
 module.exports.incoming_data = new GraphQLSchema ({
     query: RootIncomingQuery
 });
+ 
