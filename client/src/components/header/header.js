@@ -94,7 +94,7 @@ const Header = ( props ) => {
                     <ul id="navigation">
                         <li onClick={ e => changePage( 0 ) }> menu  </li>
                         <li onClick={ e => changePage( 1 ) }> cms   </li>
-                        <li onClick={ e => changePage( 2 ) }> tickets </li>
+                        <li onClick={ e => changePage( 2 ) }> admin </li>
                     </ul>
               </div>
           </Fragment>

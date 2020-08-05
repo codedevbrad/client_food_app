@@ -66,7 +66,7 @@ exports.handleOrderFromShop = asyncHandleError( async( req , res , next ) => {
 });
 
 exports.populateOrderTimes = ( req , res , next ) => {
-    res.status( 200 ).send( timeIsAcceptable() );
+    res.status( 200 ).send( timeIsAcceptable( 15 , false ) );
 }
 
 exports.getFoodforShop = ( req , res , next ) => {

@@ -7,8 +7,9 @@ import { pusherState } from './snippets/pusherConn';
 import Header   from './header/header';
 import Dropdown from './snippets/dropdown';
 
-import Orders   from './admin/orders/orders';
-import Cms      from './admin/cms/details';
+import Orders    from './admin/orders/orders';
+import Cms       from './admin/cms/details';
+import AdminInfo from './admin/adminInfo/adminComponent';
 
 import { profiles }       from './sidebar/etc/profiles';
 import Order_profile      from './sidebar/etc/profile';
@@ -272,7 +273,7 @@ const AdminDashboard = () => {
                 <section className="a_main_content_center">
                     { adminPage === 0 && <Orders /> }
                     { adminPage === 1 && <Cms />    }
-                    { adminPage === 2 && <div> tickets </div>   }
+                    { adminPage === 2 && <AdminInfo />   }
                     { adminPage === 3 && <Statistics_inDepth /> }
                 </section>
 

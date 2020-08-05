@@ -5,7 +5,7 @@ const Weekdays = new mongoose.Schema ({
   open: { type: Boolean , required: true } ,
   day:  {
       name: String ,
-      openTime: Strimg ,
+      openTime: String ,
       closeTime: String
    }
 });
@@ -24,4 +24,4 @@ const AppSchema = new mongoose.Schema ({
   apisUsed:       [ ApiAccess ]
 });
 
-module.exports.shopDetails = mongoose.model('app_storeLocks', AppSchema );
+module.exports = mongoose.model('app_storedetails', AppSchema );

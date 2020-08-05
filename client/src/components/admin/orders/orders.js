@@ -6,37 +6,10 @@ import { Loading , saveAnimation } from '../../snippets/loading';
 import Tooltip from '../../snippets/tooltips';
 
 import { SortableContainer, SortableElement , arrayMove } from 'react-sortable-hoc';
+import OrderDays from './shopWeekdays/weekdayComponent';
 
 import { menuItem , menus } from './order_handlers.js';
 import './orders.scss';
-
-const OrderDays = ( props ) => {
-
-      const [ weekdaysActive , setWeekdaysActive ] = useState( [
-          { day: 'sunday'   , open: true } , { day: 'monday'   , open: false } , { day: 'tuesday' , open: false } ,
-          { day: 'wednesday', open: true } , { day: 'thursday' , open: true }  , { day: 'friday'  , open: true } ,
-          { day: 'saturday' , open: true }
-      ] );
-      useEffect( ( ) => {
-
-      }, []);
-
-      return (
-        <div id="orderActive_section">
-            <div className="content_section_head">
-                <h1 className="title-m"> decide when to take orders </h1>
-                <p className="content_section_info p-m">
-                    decide when you're open and how people should get in contact with your business.
-                </p>
-            </div>
-            <ul className="orderActive_section_ul">
-                { weekdaysActive.map( ( eachDay , index ) =>
-                    <li key={ index } className={ eachDay.open ? 'day_is_active' : '' }>  { eachDay.day } </li>
-                )}
-            </ul>
-        </div>
-      )
-}
 
 const Orders_info = ( props ) => {
 

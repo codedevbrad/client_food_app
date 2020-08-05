@@ -5,6 +5,9 @@ const api      = express.Router();
 
 // admin auth middleware
 const AdminAuthController = require('./service_checks/authcheck' );
+
+const AdminShopDetails = require('./services/admin_details/details_controller');
+
 // admin user controller
 const AdminUserController = require('./services/admin_user/staff_controller' );
 // admin fetching order and tables.
@@ -50,7 +53,14 @@ api.route('/order/menu/item/alter')
     .post(   AdminController_fts_menu.menuItem_alter )
     .delete( AdminController_fts_menu.menuItem_delete );
 
-// admin details
+// admin shop details
+api.get(  '/app/shopDetails'        , AdminShopDetails.getAppDetails  );
+api.post( '/app/shopDetails/status' , AdminShopDetails.setAppStatus );
+api.post( '/app/shopDetails/week'   , AdminShopDetails.setDays );
+
+
+
+// admin cms details
 api.route('/app/details')
    .get(  AdminController_fts_cms.appDetails_get )
    .post( AdminController_fts_cms.appDetails_post );
