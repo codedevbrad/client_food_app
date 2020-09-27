@@ -90,7 +90,7 @@
 }
 
 .statistics_fullPage {
-    height: 100%; background: white; overflow-y: scroll; display: flex; flex-direction: column;
+    height: 100%; overflow-y: scroll; display: flex; flex-direction: column;
 
     .statistics_tile { display: flex; flex-direction: row; align-items: center;
                        width: 100%; min-height: 55px; background: white; box-shadow: 0px 6px 18px 0px #f8f8f8;
@@ -108,7 +108,7 @@
                      ul > li:last-child { border: none; }
             }
     }
-    .statistics_body { width: 100%; height: 100%; padding: 20px;
+    .statistics_body { width: 100%; height: 100%;
         .span_blue { font-size: 0.67em; }
         #stat_topOrders { float: right; width: 40%;
             padding: 0 10px;
