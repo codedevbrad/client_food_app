@@ -2,7 +2,7 @@ const express  = require('express');
 const Pusher   = require('pusher');
 
 module.exports = {
-    pusher: (  ) => {
+    pusher: ( ) => {
         return new Pusher({
             appId:  process.env.pusherAppId  ,
             key:    process.env.pusherClient ,
