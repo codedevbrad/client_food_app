@@ -12,7 +12,7 @@
 ## project_structure
 
         "web    - handles all api requests" ,
-        "admin  - allows restaurant to handle orders, menu and table bookings" ,
+        "client  - allows restaurant to handle orders, menu and table bookings" ,
         "native - native app for users to purchase food and reserve rables"
         
 ## needed for project.
